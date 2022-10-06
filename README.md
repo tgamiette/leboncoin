@@ -1,7 +1,9 @@
 # Teddy
 # Php-fpm-alpine & Nginx
-### Symfony | Docker
-Avec MariaDB & MailDev & Adminer & PMA
+### Symfony
+#### Avec MariaDB & MailDev & Adminer & PMA
+
+**Pensez à modifier le nom de votre bdd dans le fichier .env destiné à docker**
 
 Pour lancer le projet (si vous souhaiter partir d'un projet vide supprimer le dossier symfony dans app)
 
@@ -12,8 +14,14 @@ make install
 si vous avez déjà installé votre container  pour le reprendre dessus avec d'eventuel mise a jour  
 
 ````shell
-make build-dev ( non paramétré pour le moment donc continuer avec > make install ou  > make up )
+make build-dev
 ````
+
+start container 
+````shell
+make up
+````
+
 
 # J-F
 # Php-fpm-alpine x Nginx

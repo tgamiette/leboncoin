@@ -7,6 +7,8 @@ services:
             dockerfile: Dockerfile
         container_name: symfony-leboncoin
         restart: on-failure
+        environment:
+            DATABASE_URL: mysql://$MYSQL_USER:$MYSQL_PASSWORD@db/$MYSQL_DATABASE?serverVersion=mariadb-$MYSQL_VERSION
         ports:
             - "1234:80"
         volumes:
@@ -16,7 +18,7 @@ services:
             - acpSymfony
 
     db:
-        image: mariadb:10.8.2
+        image: mariadb:$MYSQL_VERSION
         container_name: mariadb-leboncoin
         restart: always
         volumes:
