@@ -8,7 +8,7 @@ up:
 		docker-compose up -d
 
 bash:
-		docker exec -ti symfony-leboncoin bash
+		docker exec -ti symfony-leboncoin sh
 
 stop:
 		docker-compose stop

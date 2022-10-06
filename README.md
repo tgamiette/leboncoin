@@ -11,13 +11,13 @@ Pour lancer le projet (si vous souhaiter partir d'un projet vide supprimer le do
 make install
 ````
 
-si vous avez déjà installé votre container  pour le reprendre dessus avec d'eventuel mise a jour  
+Si vous avez déjà installé votre container  pour le reprendre dessus avec d'éventuel mise à jour  
 
 ````shell
 make build-dev
 ````
 
-start container 
+Start container 
 ````shell
 make up
 ````
@@ -35,7 +35,7 @@ docker-compose up -d
 docker exec symfony_docker composer create-project symfony/skeleton symfony
 sudo chown -R $USER ./
 ````
-c
+
 Pensez ensuite à aller exécuter toutes vos commandes depuis l'intérieur du container.
 
 Par exemple :
