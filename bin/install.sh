@@ -33,3 +33,5 @@ docker exec symfony-leboncoin sh -c 'bin/console cache:clear'
 
 # Update var directory permissions
 docker exec symfony-leboncoin sh -c 'chown -Rf www-data: var/'
+#docker exec symfony-leboncoin sh -c 'chown -R $USER ./'
+
