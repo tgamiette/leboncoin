@@ -12,9 +12,6 @@ services:
         volumes:
             - ./conf/site.conf:/etc/nginx/http.d/default.conf
             - ./app/symfony:/var/www/symfony
-        environment:
-            DATABASE_URL: mysql://$MYSQL_USER:$MYSQL_PASSWORD@db/$MYSQL_DATABASE?serverVersion=mariadb-10.8.2"
-
         networks:
             - acpSymfony
 
