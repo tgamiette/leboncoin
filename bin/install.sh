@@ -24,12 +24,12 @@ docker-compose up --force-recreate --build -d
 #docker exec symfony_docker composer create-project symfony/skeleton symfony
 
 # install dependencies
-docker exec symfony_docker sh -c 'composer install'
-docker exec symfony_docker sh -c 'bin/console assets:install public'
+docker exec symfony-leboncoin sh -c 'composer install'
+docker exec symfony-leboncoin sh -c 'bin/console assets:install public'
 
 # Create database + update schema
-docker exec symfony_docker sh -c 'bin/console doctrine:database:create --if-not-exists'
-docker exec symfony_docker sh -c 'bin/console cache:clear'
+docker exec symfony-leboncoin sh -c 'bin/console doctrine:database:create --if-not-exists'
+docker exec symfony-leboncoin sh -c 'bin/console cache:clear'
 
 # Update var directory permissions
-docker exec symfony_docker sh -c 'chown -Rf www-data: var/'
+docker exec symfony-leboncoin sh -c 'chown -Rf www-data: var/'

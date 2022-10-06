@@ -5,7 +5,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: symfony
+        container_name: symfony-leboncoin
         restart: on-failure
         ports:
             - "1234:80"
@@ -17,7 +17,7 @@ services:
 
     db:
         image: mariadb:10.8.2
-        container_name: mariadb
+        container_name: mariadb-leboncoin
         restart: always
         volumes:
             - db-data:/var/lib/mysql
@@ -32,7 +32,7 @@ services:
             - "3306"
 
     adminer:
-        container_name: adminer
+        container_name: adminer-leboncoin
         image: adminer
         restart: always
         networks:
@@ -43,7 +43,7 @@ services:
             - "8083:8080"
 
     phpmyadmin:
-        container_name: pma
+        container_name: pma-leboncoin
         image: phpmyadmin
         restart: always
         networks:
@@ -55,7 +55,7 @@ services:
 
     maildev:
         image: maildev/maildev
-        container_name: maildev
+        container_name: maildev-leboncoin
         command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
         ports:
             - "8081:80"
