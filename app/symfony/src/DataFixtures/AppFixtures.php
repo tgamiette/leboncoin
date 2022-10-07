@@ -13,22 +13,22 @@ use Symfony\Component\Security\Core\Security;
 
 class AppFixtures extends Fixture {
 
-    public function __construct(private UserFactory $userFactory) {
+    public function __construct() {
     }
 
     public function load(ObjectManager $manager): void {
-        $faker = Factory::create('fr_FR');
-
-
-        $this->userFactory::createMany(10,)
-
-        for ($i = 0; $i < 10; $i++) {
-            $user = (new User())->setEmail($faker->email())->setPassword($password);
-
-            $password = $this->hasher->hashPassword();
-        }
-        // $product = new Product();
-        $manager->persist($user);
-        $manager->flush();
+//        $faker = Factory::create('fr_FR');
+//
+//
+//        $this->userFactory::createMany(10 );
+//
+//        for ($i = 0; $i < 10; $i++) {
+//            $user = (new User())->setEmail($faker->email())->setPassword($password);
+//
+//            $password = $this->hasher->hashPassword();
+//        }
+//        // $product = new Product();
+//        $manager->persist($user);
+//        $manager->flush();
     }
 }
