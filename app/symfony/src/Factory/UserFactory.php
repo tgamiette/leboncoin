@@ -8,6 +8,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
+use function Zenstruck\Foundry\faker;
 
 /**
  * @extends ModelFactory<User>
@@ -45,6 +46,9 @@ final class UserFactory extends ModelFactory
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'email' => self::faker()->email(),
+            'firstname' => faker()->firstName,
+            'lastname' => faker()->lastName,
+            'pseudo' => faker()->lastName,
             'roles' => [],
         ];
     }
