@@ -20,7 +20,7 @@ class AppFixtures extends Fixture {
         $faker = Factory::create('fr_FR');
 
 
-        $this->userFactory::createMany(10,)
+        $this->userFactory::createMany(10,);
 
         for ($i = 0; $i < 10; $i++) {
             $user = (new User())->setEmail($faker->email())->setPassword($password);
