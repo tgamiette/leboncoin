@@ -8,8 +8,10 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/doctrine-bundle": "^2.7",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.13",
+        "gedmo/doctrine-extensions": "^3.9",
         "symfony/console": "6.1.*",
         "symfony/dotenv": "6.1.*",
         "symfony/flex": "^2",
@@ -18,6 +20,7 @@
         "symfony/monolog-bundle": "^3.0",
         "symfony/proxy-manager-bridge": "6.1.*",
         "symfony/runtime": "6.1.*",
+        "symfony/security-bundle": "6.1.*",
         "symfony/twig-bundle": "6.1.*",
         "symfony/yaml": "6.1.*",
         "twig/extra-bundle": "^2.12|^3.0",
@@ -76,8 +79,10 @@
         }
     },
     "require-dev": {
+        "fakerphp/faker": "^1.20",
         "symfony/debug-bundle": "6.1.*",
         "symfony/stopwatch": "6.1.*",
-        "symfony/web-profiler-bundle": "6.1.*"
+        "symfony/web-profiler-bundle": "6.1.*",
+        "zenstruck/foundry": "^1.22"
     }
 }
