@@ -13,8 +13,8 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         $path = $this->getParameter('kernel.project_dir') . '/public/assets/08-Memo-Global_compressed.pdf';
-        $files = new  File($path);
-        dd($files);
+        $files = new File($path);
+//        dd($files);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
         ]);
