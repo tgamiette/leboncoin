@@ -18,6 +18,6 @@ restart: stop up
 build-dev:
 	    docker exec symfony-leboncoin chown -R www-data: var/
 		docker exec symfony-leboncoin sh -c 'composer install'
-		docker exec symfony-leboncoin sh -c 'bin/console assets:install public'
-		docker exec symfony-leboncoin sh -c 'bin/console doctrine:schema:update --force'
-		docker exec symfony-leboncoin sh -c 'bin/console cache:clear'
+		docker exec symfony-leboncoin sh -c 'symfony console assets:install public'
+		docker exec symfony-leboncoin sh -c 'symfony console doctrine:schema:update --force'
+		docker exec symfony-leboncoin sh -c 'symfony console cache:clear'
