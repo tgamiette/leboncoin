@@ -1,17 +1,7 @@
-@font-face {
-  font-family: "kernix";
-  src: url('../../fonts/icons/kernix.eot');
-  src: url('../../fonts/icons/kernix.eot?#iefix') format('eot'),
-    url('../../fonts/icons/kernix.woff2') format('woff2'),
-    url('../../fonts/icons/kernix.woff') format('woff'),
-    url('../../fonts/icons/kernix.ttf') format('truetype'),
-    url('../../fonts/icons/kernix.svg#kernix') format('svg');
-}
-
 @mixin icon-styles {
-  font-family: "kernix";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: "Apple Chancery", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-style: normal;
   font-variant: normal;
   font-weight: normal;
@@ -20,223 +10,32 @@
   text-transform: none;
 }
 
-%icon {
-  @include icon-styles;
-}
-
-@function icon-char($filename) {
+@function icon-content($filename) {
   $char: "";
 
-  @if $filename == add-project {
+  @if $filename == arrow-long-left {
     $char: "\E001";
   }
-  @if $filename == add {
-    $char: "\E002";
-  }
-  @if $filename == arrow-long-left {
-    $char: "\E003";
-  }
+
   @if $filename == arrow-long-right {
-    $char: "\E004";
-  }
-  @if $filename == arrow-mini-down {
-    $char: "\E005";
-  }
-  @if $filename == arrow-mini-up {
-    $char: "\E006";
-  }
-  @if $filename == attribut {
-    $char: "\E007";
-  }
-  @if $filename == calendar {
-    $char: "\E008";
-  }
-  @if $filename == caret {
-    $char: "\E009";
-  }
-  @if $filename == check-round {
-    $char: "\E00A";
-  }
-  @if $filename == chevron-d-left {
-    $char: "\E00B";
-  }
-  @if $filename == chevron-d-right {
-    $char: "\E00C";
-  }
-  @if $filename == chevron-left {
-    $char: "\E00D";
-  }
-  @if $filename == chevron-right {
-    $char: "\E00E";
-  }
-  @if $filename == close {
-    $char: "\E00F";
-  }
-  @if $filename == danger {
-    $char: "\E010";
-  }
-  @if $filename == edit {
-    $char: "\E011";
-  }
-  @if $filename == ext-arrow-link {
-    $char: "\E012";
-  }
-  @if $filename == ext-link {
-    $char: "\E013";
-  }
-  @if $filename == ext-square-link {
-    $char: "\E014";
-  }
-  @if $filename == instance {
-    $char: "\E015";
-  }
-  @if $filename == kernix {
-    $char: "\E016";
-  }
-  @if $filename == pin {
-    $char: "\E017";
-  }
-  @if $filename == print {
-    $char: "\E018";
-  }
-  @if $filename == reset {
-    $char: "\E019";
-  }
-  @if $filename == search {
-    $char: "\E01A";
-  }
-  @if $filename == server {
-    $char: "\E01B";
-  }
-  @if $filename == sorted {
-    $char: "\E01C";
-  }
-  @if $filename == star-outline {
-    $char: "\E01D";
-  }
-  @if $filename == star {
-    $char: "\E01E";
-  }
-  @if $filename == test {
-    $char: "\E01F";
-  }
-  @if $filename == trash {
-    $char: "\E020";
-  }
-  @if $filename == url {
-    $char: "\E021";
+    $char: "\E002";
   }
 
   @return $char;
 }
 
-@mixin icon($filename, $insert: before, $extend: true) {
+@mixin icon($filename, $insert: before) {
   &:#{$insert} {
-    @if $extend {
-      @extend %icon;
-    } @else {
-      @include icon-styles;
-    }
-    content: icon-char($filename);
+    @include icon-styles;
   }
+  content: icon-content($filename);
 }
 
-.icon-add-project {
-  @include icon(add-project);
-}
-.icon-add {
-  @include icon(add);
-}
 .icon-arrow-long-left {
   @include icon(arrow-long-left);
 }
+
 .icon-arrow-long-right {
-  @include icon(arrow-long-right);
-}
-.icon-arrow-mini-down {
-  @include icon(arrow-mini-down);
-}
-.icon-arrow-mini-up {
-  @include icon(arrow-mini-up);
-}
-.icon-attribut {
-  @include icon(attribut);
-}
-.icon-calendar {
-  @include icon(calendar);
-}
-.icon-caret {
-  @include icon(caret);
-}
-.icon-check-round {
-  @include icon(check-round);
-}
-.icon-chevron-d-left {
-  @include icon(chevron-d-left);
-}
-.icon-chevron-d-right {
-  @include icon(chevron-d-right);
-}
-.icon-chevron-left {
-  @include icon(chevron-left);
-}
-.icon-chevron-right {
-  @include icon(chevron-right);
-}
-.icon-close {
-  @include icon(close);
-}
-.icon-danger {
-  @include icon(danger);
-}
-.icon-edit {
-  @include icon(edit);
-}
-.icon-ext-arrow-link {
-  @include icon(ext-arrow-link);
-}
-.icon-ext-link {
-  @include icon(ext-link);
-}
-.icon-ext-square-link {
-  @include icon(ext-square-link);
-}
-.icon-instance {
-  @include icon(instance);
-}
-.icon-kernix {
-  @include icon(kernix);
-}
-.icon-pin {
-  @include icon(pin);
-}
-.icon-print {
-  @include icon(print);
-}
-.icon-reset {
-  @include icon(reset);
-}
-.icon-search {
-  @include icon(search);
-}
-.icon-server {
-  @include icon(server);
-}
-.icon-sorted {
-  @include icon(sorted);
-}
-.icon-star-outline {
-  @include icon(star-outline);
-}
-.icon-star {
-  @include icon(star);
-}
-.icon-test {
-  @include icon(test);
-}
-.icon-trash {
-  @include icon(trash);
-}
-.icon-url {
-  @include icon(url);
+  @include icon(arrow-long-left);
+  rotate: 180deg;
 }
