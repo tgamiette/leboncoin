@@ -1,0 +1,27 @@
+/* ---- Modals ---- */
+.modal-dialog {
+  @include min(sm){ max-width: 770px; }
+}
+.modal-title {
+  font-size: rem(32px); margin-bottom: rem(40px); text-align: center;
+}
+.modal-content { border: 0; border-radius: 0;}
+.modal-icons { margin: 0 auto rem(30px); width: 105px; height: 28px; @include bgc(center, center, transparent); background-size: contain;}
+.modal-action-text {
+  text-align: center; max-width: 450px; width: 100%; margin: 0 auto rem(24px); font-size: rem(21px);
+}
+.modal-actions {
+  text-align: center;
+  .btn { margin: 0 rem(5px);}
+}
+.modal-body {
+  padding: rem(50px) rem(70px) rem(60px);
+}
+.alert-modal {
+  .modal-dialog {
+    @include min(sm){ margin-top: rem(150px);}
+  }
+}
+.close {
+  &:hover, &:focus { outline: none;}
+}

@@ -1,0 +1,64 @@
+// COLOURS
+$blue:          #003CFF;
+$light-blue:    #f2f5ff;
+$dark-grey:     #333;
+$grey:          #FCFCFD;
+$grey-10:       #E9E9EB;
+$grey-20:       #9E9E9E;
+$grey-30:       #C4C4C4;
+$red:           #e00000;
+$green:         #00B316;
+$yellow:        #F1C232;
+$pink:          #FF1959;
+$white:         #fff;
+$black:         #000;
+
+$primary:     $blue;
+$secondary :  $black;
+$tertiary:    $white;
+
+$success:    $green;
+$info:       $primary;
+$warning:    $yellow;
+$danger:     $pink;
+
+// Complement
+$input-color:     $grey;
+$border-color:    $grey-10;
+$text-color:      $black;
+$body-color:      $black;
+
+// SIZES
+$btn-height: 50px;
+$input-height: 50px;
+
+// Gutter Padding
+$grid-gutter-width: 30px;
+
+// FONTS
+@import "mixins/strip-unit";
+$font-family-base: 'IBM Plex Sans', Arial, sans-serif;
+
+  // Fz Bootstrap
+  $font-size-base: 1rem /* 16px*/;
+  $font-value-base: strip-unit($font-size-base);
+
+  // Fz for mixin rem
+  $font-size-base-px: (16px*$font-value-base) /* 1rem */;
+
+// BREAK-POINTS
+$grid-breakpoints: (
+  xs: 0,
+  sm: 768px,
+  md: 1024px,
+  lg: 1280px,
+  xl: 1445px
+) !default;
+
+// Container
+$container-max-widths: (
+  sm: 1180px,
+  md: 1190px,
+  lg: 1410px,
+  xl: 1420px
+) !default;

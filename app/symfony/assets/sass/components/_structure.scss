@@ -1,0 +1,154 @@
+/* ---- General rules ---- */
+:root {
+  --tertiary: #{$tertiary};
+}
+html { height: 100%; }
+body {
+  font-stretch: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.33;
+  font-weight: 400;
+  background: $grey;
+}
+
+h1, h2, h3, h4, h5, h6 { margin-top: 0; line-height: 1.33; font-weight: 400;}
+img { max-width: 100%; }
+a {
+  outline: 0; transition: 0.3s; text-decoration: none;
+  &.url { word-break: break-all; }
+  &:hover, &:active, &:focus { text-decoration: underline;}
+}
+p {
+  word-wrap: break-word;
+}
+
+// Selection Text
+::-moz-selection { color: $white; background: darken($primary, 10%); }
+::selection { color: $white; background: darken($primary, 10%); }
+
+// Container
+// $gutter: 15px;
+// .row { margin-left: -$gutter; margin-right: -$gutter; }
+// [class*="col-"]{ padding-left: $gutter; padding-right: $gutter; }
+.row-reverse {
+  @include max(sm) {
+    display: flex; flex-direction: column-reverse;
+  }
+}
+.col-btn {
+  &.col-md-12 {
+    br, .form-label { display: none;}
+  }
+}
+
+// Tooltip
+.tooltip {
+  &.show { opacity: 1;}
+}
+.tooltip-inner { background: $secondary; }
+.bs-tooltip-auto[x-placement^=top] .arrow::before, .bs-tooltip-top .arrow::before {
+  border-top-color: $secondary;
+}
+.bs-tooltip-auto[x-placement^=right] .arrow::before, .bs-tooltip-right .arrow::before {
+  border-right-color: $secondary;
+}
+.bs-tooltip-auto[x-placement^=bottom] .arrow::before, .bs-tooltip-bottom .arrow::before {
+  border-bottom-color: $secondary;
+}
+.bs-tooltip-auto[x-placement^=left] .arrow::before, .bs-tooltip-left .arrow::before {
+  border-left-color: $secondary;
+}
+
+// Fix Google Map
+.google-map [aria-hidden] { display: block }
+
+// Pagination
+.navigation {
+  margin-top: rem(30px); float: right;
+  .pagination { margin-bottom: 0;}
+
+  span {
+    cursor: pointer; width: 38px; padding: 0; text-align: center; font-size: rem(18px); font-weight: 300; background: transparent; border: 0; color: $grey-20;
+    &:hover {
+      background: transparent;
+      a {
+        color: $text-color !important;  text-decoration: none;
+      }
+    }
+    &:before {
+      content: ''; width: 12px; height: 2px; background: $primary; display: block; margin: 0 auto rem(5px); opacity: 0; transition: .3s;
+    }
+    &:focus { outline: none; box-shadow: none;}
+
+    a {
+      color: $grey-20; display: block;
+    }
+  }
+
+  .previous, .first, .next, .last {
+    &:before { display: none;}
+    a {
+      color: $text-color; font-size: 0;
+      &:hover { color: $primary !important;}
+    }
+  }
+  .previous {
+    a {
+      @include icon(chevron-left);
+      &:before {
+        font-size: rem(10px); line-height: 38px;
+      }
+    }
+  }
+  .first {
+    a {
+      @include icon(chevron-d-left);
+      &:before {
+        font-size: rem(10px); line-height: 38px;
+      }
+    }
+  }
+  .next {
+    a {
+      @include icon(chevron-right);
+      &:before {
+        font-size: rem(10px); line-height: 38px;
+      }
+    }
+  }
+  .last {
+    a {
+      @include icon(chevron-d-right);
+      &:before {
+        font-size: rem(10px); line-height: 38px;
+      }
+    }
+  }
+  .current {
+    background: transparent; color: $text-color; font-weight: 500;
+    &:before { opacity: 1;}
+    &:hover { background: transparent; color: $text-color !important;}
+  }
+}
+
+
+// Alert
+.alert {
+  border-radius: 3px; margin-bottom: rem(24px); padding: rem(14px) rem(20px); position: relative;
+}
+// Alert
+.alert-danger {
+  background: rgba($danger, 0.02); border: 1px solid rgba($danger, 0.4); color: $danger; padding-left: rem(50px);
+  @include icon(danger);
+  &:before {
+    position: absolute; left: 20px; top: 14px;
+  }
+}
+
+
+// Empty
+.empty-block {
+  text-align: center; font-weight: 500; font-size: rem(18px);
+  .empty-icons { margin: 0 auto rem(20px); width: 105px; height: 28px; @include bgc(center, center, transparent); background-size: contain;}
+}

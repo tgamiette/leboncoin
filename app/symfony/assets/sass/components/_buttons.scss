@@ -1,0 +1,166 @@
+/* ---- Button ---- */
+.btn {
+  //background: transparent;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: rem(16px);
+  min-height: $btn-height;
+  text-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  text-decoration: none;
+  white-space: normal;
+  padding: rem(12px) rem(30px);
+  background-image: none;
+  white-space: normal;
+  box-shadow: initial;
+  transition: 0.3s;
+  &:focus, &:active, &:active:focus { outline: none; box-shadow: none; text-decoration: none;}
+  &:hover { text-decoration: none;}
+  &[disabled], &.disabled {
+    pointer-events: none; opacity: 0.35;
+  }
+}
+
+.btn-full { width: 100%; }
+
+.btn-icon-left {
+  //padding-left: rem(20px); padding-right: rem(20px);
+  i { margin-right: rem(8px); display: inline-block; vertical-align: middle; margin-top: rem(-1px); font-size: rem(15px); line-height: 1;}
+}
+
+.btn-icon-alone {
+  width: 50px; font-size: rem(14px); padding: 0; line-height: 46px;
+}
+
+.btn-link {
+  min-height: auto; padding: 0;
+}
+
+.btn-menu {
+  span {
+    @include burger(28px, 2px, 7px, $primary); position: absolute; top: 50%; left: 50%; margin-left: rem(-15px); margin-top: rem(-1.5px);
+    // &:before, &:after { width: 20px; left: 4px;}
+  }
+
+  &.clicked {
+    span {
+      @include burger-to-cross;
+    }
+  }
+}
+
+.btn-primary {
+  // color: $white; background-color: $primary;
+  &:focus, &:hover, &:active:focus { background-color: transparent; color: $primary;}
+}
+.btn-outline-primary {
+  // color: $white; background-color: $primary;
+  &:focus, &:hover, &:active:focus { background-color: $primary; color: $white;}
+}
+.btn-secondary {
+  // color: $white; background-color: $secondary;
+  &:focus, &:hover, &:active:focus { background-color: transparent; color: $secondary;}
+
+  &.disabled, &:disabled {
+    background: $grey-10; opacity: 1; color: $grey-20; border-color: $grey-10;
+  }
+}
+.btn-grey-20 {
+  color: $white; background-color: $grey-20; border: 1px solid $grey-20;
+  &:focus, &:hover, &:active:focus { background-color: transparent; color: $grey-20;}
+}
+.btn-outline-secondary {
+  // color: $white; background-color: $primary;
+  &:focus, &:hover, &:active:focus { background-color: $secondary; color: $white;}
+
+  &.btn-no-link {
+    background: transparent; color: $secondary;
+    &:hover, &:focus {  text-decoration: underline;}
+  }
+}
+.btn-tertiary {
+  color: $black; background-color: $tertiary; border: 1px solid $tertiary;
+  &:focus, &:hover, &:active:focus { background-color: $white; color: $black;}
+}
+.btn-outline-tertiary {
+  color: $tertiary; background-color: transparent; border: 1px solid $tertiary;
+  &:focus, &:hover, &:active:focus {
+    background: $tertiary; color: $black;
+    // Primary Header
+    .header-primary-wrap & {
+      color: $primary;
+    }
+
+    // Grey-20 Header
+    .header-grey-20-wrap & {
+      color: $grey-20;
+    }
+  }
+}
+
+.btn-danger {
+  color: $white;
+  &:focus, &:hover, &:active:focus { background-color: transparent; color: $danger;}
+  &[disabled], &.disabled { color: $white;}
+}
+
+.btn-success {
+  color: $white;
+  &:focus, &:hover, &:active:focus { background-color: transparent; color: $success;}
+  &[disabled], &.disabled { color: $white; display: none;}
+}
+
+.btn-outline-danger {
+  &:focus, &:hover, &:active:focus {
+    color: $white;
+  }
+  &.btn-no-link {
+    background: transparent; color: $danger;
+    &:hover, &:focus {  text-decoration: underline;}
+  }
+}
+
+.btn-close {
+  position: absolute;right: 25px; top: 25px; z-index: 2; padding: 10px; line-height: 1; font-size: rem(12px); min-height: auto;
+  &:hover, &:focus { color: $primary;}
+}
+
+.btn-favorite {
+  &.active {
+    .icon-star-outline { display: none;}
+    .icon-star { display: block;}
+  }
+
+  .icon-star { display: none;}
+}
+
+.btn-link {
+  &:hover, &:focus { color: $text-color;}
+}
+
+.btn-delete {
+  color: $grey-20;
+  &:hover, &:focus { color: $danger;}
+}
+
+.btn-modif-server {
+  i {
+    display: inline-block; vertical-align: middle; margin-left: rem(8px); font-size: rem(14px);
+  }
+}
+
+.btn-sm {
+  min-height: 26px; padding: rem(1px) rem(10px); font-size: rem(14px); font-weight: 500;
+  i {
+    display: inline-block; vertical-align: middle; margin-left: rem(5px); font-size: rem(12px);
+  }
+}
+
+.btn-left-15 {
+  margin-left: rem(15px);
+}
+
+.btn-no-link { padding: 0; border-radius: 0; border: 0; min-height: 100%;}

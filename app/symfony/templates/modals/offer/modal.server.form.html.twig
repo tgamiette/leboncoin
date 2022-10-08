@@ -1,0 +1,77 @@
+{% if serverForm.vars.data %}
+  <h5 class="modal-title">
+    Modifier le serveur
+  </h5>
+{% else %}
+  <h5 class="modal-title">
+    Ajouter un serveur
+  </h5>
+{% endif %}
+
+{% include 'modals/modal.error.html.twig' %}
+
+{{ form_start(serverForm, {'attr': {'class': 'default-form modal-form'}}) }}
+<fieldset>
+<div class="row">
+  <div class="col-sm-6">
+  <div class="mb-3">
+    {{ form_row(serverForm.hostName) }}
+  </div>
+  </div>
+  <div class="col-sm-6">
+  <div class="mb-3">
+    {{ form_row(serverForm.platform) }}
+  </div>
+  </div>
+  <div class="col-sm-6">
+  <div class="mb-3">
+    {{ form_row(serverForm.platformVersion) }}
+  </div>
+  </div>
+  <div class="col-sm-6">
+  <div class="mb-3">
+    {{ form_row(serverForm.ipAddress) }}
+  </div>
+  </div>
+  <div class="col-sm-6">
+  <div class="mb-3">
+    {{ form_row(serverForm.ram, {'type':'number'}) }}
+  </div>
+  </div>
+  <div class="col-sm-6">
+  <div class="mb-3">
+    {{ form_row(serverForm.storage, {'type':'number'}) }}
+  </div>
+  </div>
+  <div class="col-sm-6">
+  <div class="mb-3">
+    {{ form_row(serverForm.cpu) }}
+  </div>
+  </div>
+  <div class="col-sm-6">
+  <div class="mb-3">
+    {{ form_row(serverForm.os) }}
+  </div>
+  </div>
+  <div class="col-sm-6">
+  <div class="mb-3">
+    {{ form_row(serverForm.creationDate) }}
+  </div>
+  </div>
+</div>
+</fieldset>
+
+<div class="default-form-actions">
+  <div class="default-form-info">
+    <div class="help-text">
+    * Champs obligatoires
+    </div>
+  </div>
+
+  <div class="default-form-btns">
+      <button type="button" class="btn btn-grey-20" data-bs-dismiss="modal">Annuler</button>
+      <button type="submit" class="btn btn-success btn-icon-left"><i class="icon-check-round"></i>Enregistrer</button>
+  </div>
+</div>
+
+{{ form_end(serverForm) }}

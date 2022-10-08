@@ -1,0 +1,135 @@
+{% if instanceForm.vars.data %}
+  <h5 class="modal-title">Modifier l'instance </h5>
+{% else %}
+  <h5 class="modal-title">Ajouter une nouvelle instance </h5>
+{% endif %}
+{% include 'modals/modal.error.html.twig' %}
+
+{{ form_start(instanceForm, {'attr': {'class': 'default-form modal-form', 'data-instance-id': instanceForm.vars.data ? instanceForm.vars.data.id : null}}) }}
+  <fieldset>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="mb-3">
+          {{ form_row(instanceForm.project) }}
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="mb-3">
+          {{ form_row(instanceForm.type) }}
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          {{ form_row(instanceForm.server) }}
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          {{ form_row(instanceForm.url) }}
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          {{ form_row(instanceForm.label) }}
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Ajouter des attributs à votre nouvelle instance</legend>
+      {% set projectWithoutInstance = instanceForm.vars.recentInstance.id is not defined %}
+      <div class="attribut-row">
+        <div class="row">
+          <div class="col-12">
+            <div class="mb-3">
+              <div class="instanceAttributes" data-index="{{ instanceForm.instanceAttributes|length > 0 ? instanceForm.instanceAttributes|last.vars.name + 1 : 0 }}"
+                  data-prototype="
+                    <div class='attribute-row'>
+                      <div class='row'>
+                        <div class='col'>
+                          <div class='mb-3'>
+                            {% if projectWithoutInstance %}
+                              {{ form_row(instanceForm.instanceAttributes.vars.prototype.attribute)|e }}
+                            {% else %}
+                              {{ form_row(instanceForm.instanceAttributes.vars.prototype.attribute, { 'attr':{'disabled':'disabled'} })|e }}
+                            {% endif %}
+                          </div>
+                        </div>
+                        <div class='col'>
+                          <div class='mb-3'>
+                            {{ form_row(instanceForm.instanceAttributes.vars.prototype.version)|e }}
+                          </div>
+                        </div>
+                        <div class='col col-attribut-btn'>
+                          <div class='mb-3'>
+                            <label for='' class='form-label'>&nbsp;</label>
+                            {% if projectWithoutInstance and not instanceForm.vars.data %}
+                              <button type='button' class='btn btn-outline-danger btn-icon-alone delete-attribute'><i class='icon-trash'></i><span class='visually-hidden'>Supprimer</span></button>
+                            {% elseif not instanceForm.vars.data  %}
+                              <button type='button' class='btn btn-secondary btn-icon-alone reset-attribute disabled'><i class='icon-reset'></i><span class='visually-hidden'>Réinitialiser</span></button>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>">
+                    {% for instanceAttribute in instanceForm.instanceAttributes %}
+                      <div class='attribute-row'>
+                        <div class='row'>
+                          <div class='col'>
+                            <div class='mb-3'>
+                              {% if projectWithoutInstance %}
+                                {{ form_row(instanceAttribute.attribute) }}
+                              {% else %}
+                                {{ form_row(instanceAttribute.attribute, { 'attr':{'readonly':'readonly'} }) }}
+                              {% endif %}
+                            </div>
+                          </div>
+                          <div class='col'>
+                            <div class='mb-3'>
+                              {{ form_row(instanceAttribute.version) }}
+                            </div>
+                          </div>
+                          <div class='col col-attribut-btn'>
+                            <div class='mb-3'>
+                              <label for='' class='form-label'>&nbsp;</label>
+                              {% if projectWithoutInstance and not instanceForm.vars.data %}
+                                <button type='button' class='btn btn-outline-danger btn-icon-alone delete-attribute'><i class='icon-trash'></i><span class='visually-hidden'>Supprimer</span></button>
+                              {% elseif not instanceForm.vars.data %}
+                                <button type='button' class='btn btn-secondary btn-icon-alone reset-attribute disabled'><i class='icon-reset'></i><span class='visually-hidden'>Réinitialiser</span></button>
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+              </div>
+              {% if projectWithoutInstance %}
+                <div class="text-end">
+                  <button type="button" class="add_attribute_list btn btn-primary btn-icon-left" data-collection-holder-class="instanceAttributes"><i class="icon-attribut"></i>Ajouter un attribut</button>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+  </fieldset>
+
+  <div class="default-form-actions">
+    <div class="default-form-info">
+      <div class="help-text">
+        * Champs obligatoires
+      </div>
+    </div>
+
+    <div class="default-form-btns">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+      <button type="submit" class="btn btn-success btn-icon-left"><i class="icon-check-round"></i>Enregistrer</button>
+    </div>
+  </div>
+{{ form_row(instanceForm._token) }}
+{{ form_end(instanceForm, {render_rest: false}) }}

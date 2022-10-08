@@ -1,0 +1,7 @@
+/* ---- Footer ---- */
+.footer-skaneur-wrap {
+  @extend .clearfix; padding: 0 0 rem(30px);
+
+  // Copyright
+  .copyright-title { float: left; font-weight: 300; font-size: rem(14px);}
+}
