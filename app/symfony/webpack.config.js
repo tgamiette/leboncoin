@@ -24,7 +24,7 @@ Encore
     .addEntry("main", "./assets/js/main.js")
     .addEntry("form", "./assets/js/form/form.js")
     // will output as web/build/main.min.css
-    .addStyleEntry("toto", "./assets/sass/main.scss")
+    .addStyleEntry("main.css", "./assets/sass/main.scss")
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
 

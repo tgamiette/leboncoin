@@ -1,22 +1,34 @@
 // Variables
-@import "variables";
+@import 'variables';
 // Bootstrap
 @import "bootstrap";
+
+
 //
+@import "mixins/bg-cover";
+@import "mixins/circle";
+@import "mixins/flex";
+@import "mixins/fonts-typo";
+@import "mixins/fonts-vendor";
+@import "mixins/menu";
+@import "mixins/breakpoints";
+@import "mixins/rem";
+
+
 //// Components
-//@import "components/select-a11y";
-//@import "components/iconfont";
-//@import "components/buttons";
-//@import "components/links";
-//@import "components/texts";
+@import "components/select-a11y";
+@import "components/iconfont";
+@import "components/buttons";
+@import "components/links";
+@import "components/texts";
 //@import "components/modals";
-//@import "components/tables";
-//@import "components/commons";
-//@import "components/fonts";
-//@import "components/forms";
+@import "components/tables";
+@import "components/commons";
+@import "components/fonts";
+@import "components/forms";
 //@import "components/lists";
 //@import "components/print";
-//@import "components/structure";
+@import "components/structure";
 //
 //// Layouts
 //@import "layouts/header";

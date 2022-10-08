@@ -17,7 +17,7 @@ img { max-width: 100%; }
 a {
   outline: 0; transition: 0.3s; text-decoration: none;
   &.url { word-break: break-all; }
-  &:hover, &:active, &:focus { text-decoration: underline;}
+  &:hover, &:active, &:focus { text-decoration: none; }
 }
 p {
   word-wrap: break-word;
@@ -31,11 +31,7 @@ p {
 // $gutter: 15px;
 // .row { margin-left: -$gutter; margin-right: -$gutter; }
 // [class*="col-"]{ padding-left: $gutter; padding-right: $gutter; }
-.row-reverse {
-  @include max(sm) {
-    display: flex; flex-direction: column-reverse;
-  }
-}
+
 .col-btn {
   &.col-md-12 {
     br, .form-label { display: none;}
@@ -45,19 +41,6 @@ p {
 // Tooltip
 .tooltip {
   &.show { opacity: 1;}
-}
-.tooltip-inner { background: $secondary; }
-.bs-tooltip-auto[x-placement^=top] .arrow::before, .bs-tooltip-top .arrow::before {
-  border-top-color: $secondary;
-}
-.bs-tooltip-auto[x-placement^=right] .arrow::before, .bs-tooltip-right .arrow::before {
-  border-right-color: $secondary;
-}
-.bs-tooltip-auto[x-placement^=bottom] .arrow::before, .bs-tooltip-bottom .arrow::before {
-  border-bottom-color: $secondary;
-}
-.bs-tooltip-auto[x-placement^=left] .arrow::before, .bs-tooltip-left .arrow::before {
-  border-left-color: $secondary;
 }
 
 // Fix Google Map
@@ -144,11 +127,4 @@ p {
   &:before {
     position: absolute; left: 20px; top: 14px;
   }
-}
-
-
-// Empty
-.empty-block {
-  text-align: center; font-weight: 500; font-size: rem(18px);
-  .empty-icons { margin: 0 auto rem(20px); width: 105px; height: 28px; @include bgc(center, center, transparent); background-size: contain;}
 }
