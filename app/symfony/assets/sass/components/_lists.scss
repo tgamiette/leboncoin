@@ -1,0 +1,27 @@
+/* ---- Lists ---- */
+ol, ul {
+  padding-left: rem(18px);
+}
+
+// List Icons
+// .list-icon {
+//   $width-icon: 25px;
+//
+//   li {
+//     &:before { @include zmdi; display: inline-block; margin-right: rem(8px); }
+//   }
+//   > li {
+//     &:before {
+//       @include zmdi; content: "\f1f1";
+//     }
+//     span { display: inline-block; width: calc(100% - $width-icon); vertical-align: top;}
+//     ul , ol {
+//       padding-left: rem(15px);
+//       > li {
+//         &:before {
+//           content: "\f1f2";
+//         }
+//       }
+//     }
+//   }
+// }

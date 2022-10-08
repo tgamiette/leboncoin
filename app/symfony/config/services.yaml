@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    session_max_idle_time: '1800'
 
 services:
     # default configuration for services in *this* file
@@ -19,6 +20,10 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    handler.session:
+        class: App\Events\SessionHandler
+        bind:
+            $maxIdleTime: 3000
+            $session: '@security.csrf.token_storage'
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

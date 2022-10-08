@@ -1,0 +1,500 @@
+/* ---- Form ---- */
+
+// Form elements Common
+label { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+
+textarea {
+  &.form-control { min-height: 150px; padding-top: rem(15px);}
+}
+
+.form-control {
+  height: $input-height; background-color: $input-color; box-shadow: none; font-size: rem(16px); -webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; color: $text-color; /*caret-color: $primary;*/ border-radius: 3px; padding-left: rem(20px); padding-right: rem(20px); border-color: $grey-10;
+  &:focus { box-shadow: none; border-color: $primary; color: $text-color; background-color: $input-color; }
+
+  &::-webkit-input-placeholder {
+    color: $text-color; opacity: 0.5 !important;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $text-color; opacity: 0.5 !important;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $text-color; opacity: 0.5 !important;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $text-color; opacity: 0.5 !important;
+  }
+  &:-webkit-autofill {
+   -webkit-box-shadow: 0 0 0px 1000px $white inset;
+   transition: background-color 5000s ease-in-out 0s;
+   // -webkit-text-fill-color: $white;
+    &:hover, &:focus {
+     -webkit-box-shadow: 0 0 0px 1000px $white inset;
+     transition: background-color 5000s ease-in-out 0s;
+     // -webkit-text-fill-color: $white;
+   }
+  }
+  &[disabled] {
+    background: transparentize($dark-grey,0.8); color: transparentize($text-color,0.5); cursor: not-allowed;
+  }
+
+  // Datepicker
+  &.datepicker { cursor: pointer; max-width: 100%; }
+}
+
+input[type="url"]{
+  padding-left: rem(50px);
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.03373 9.43278L4.29943 12.1671C3.96838 12.4866 3.52625 12.6651 3.06617 12.6651C2.60609 12.6651 2.16397 12.4866 1.83292 12.1671C1.67056 12.0054 1.54172 11.8132 1.45382 11.6015C1.36591 11.3899 1.32066 11.163 1.32066 10.9338C1.32066 10.7047 1.36591 10.4778 1.45382 10.2661C1.54172 10.0545 1.67056 9.8623 1.83292 9.70057L4.56722 6.96627C4.69992 6.83357 4.77447 6.65359 4.77447 6.46592C4.77447 6.27826 4.69992 6.09828 4.56722 5.96558C4.43452 5.83288 4.25454 5.75832 4.06687 5.75832C3.8792 5.75832 3.69922 5.83288 3.56652 5.96558L0.832221 8.70692C0.281384 9.30649 -0.0165251 10.0957 0.000708055 10.9097C0.0179412 11.7237 0.348984 12.4996 0.924703 13.0753C1.50042 13.651 2.2763 13.9821 3.09031 13.9993C3.90431 14.0165 4.69351 13.7186 5.29308 13.1678L8.03442 10.4335C8.10013 10.3678 8.15225 10.2898 8.18781 10.2039C8.22337 10.1181 8.24168 10.0261 8.24168 9.93313C8.24168 9.84021 8.22337 9.74819 8.18781 9.66234C8.15225 9.57649 8.10013 9.49849 8.03442 9.43278C7.96872 9.36707 7.89071 9.31495 7.80486 9.27939C7.71901 9.24383 7.627 9.22553 7.53408 9.22553C7.44115 9.22553 7.34914 9.24383 7.26329 9.27939C7.17744 9.31495 7.09943 9.36707 7.03373 9.43278ZM13.0802 0.919805C12.4874 0.330666 11.6855 0 10.8498 0C10.014 0 9.21216 0.330666 8.61934 0.919805L5.87799 3.65411C5.81229 3.71981 5.76016 3.79782 5.7246 3.88367C5.68904 3.96952 5.67074 4.06153 5.67074 4.15445C5.67074 4.24738 5.68904 4.33939 5.7246 4.42524C5.76016 4.51109 5.81229 4.5891 5.87799 4.6548C5.9437 4.72051 6.0217 4.77263 6.10755 4.80819C6.1934 4.84375 6.28542 4.86205 6.37834 4.86205C6.47126 4.86205 6.56328 4.84375 6.64913 4.80819C6.73498 4.77263 6.81298 4.72051 6.87869 4.6548L9.61299 1.9205C9.94404 1.601 10.3862 1.42245 10.8462 1.42245C11.3063 1.42245 11.7484 1.601 12.0795 1.9205C12.2419 2.08223 12.3707 2.27442 12.4586 2.48605C12.5465 2.69768 12.5918 2.92459 12.5918 3.15376C12.5918 3.38292 12.5465 3.60983 12.4586 3.82146C12.3707 4.0331 12.2419 4.22529 12.0795 4.38701L9.3452 7.12131C9.27915 7.18682 9.22672 7.26477 9.19094 7.35064C9.15516 7.43652 9.13674 7.52863 9.13674 7.62166C9.13674 7.71469 9.15516 7.8068 9.19094 7.89268C9.22672 7.97855 9.27915 8.0565 9.3452 8.12201C9.41071 8.18806 9.48865 8.24049 9.57453 8.27627C9.66041 8.31204 9.75252 8.33046 9.84555 8.33046C9.93858 8.33046 10.0307 8.31204 10.1166 8.27627C10.2024 8.24049 10.2804 8.18806 10.3459 8.12201L13.0802 5.38066C13.6693 4.78784 14 3.98601 14 3.15023C14 2.31446 13.6693 1.51263 13.0802 0.919805ZM4.72226 9.27774C4.78811 9.34306 4.8662 9.39473 4.95206 9.4298C5.03792 9.46487 5.12986 9.48265 5.22261 9.48211C5.31535 9.48265 5.40729 9.46487 5.49315 9.4298C5.57901 9.39473 5.65711 9.34306 5.72295 9.27774L9.19016 5.81054C9.32286 5.67784 9.39741 5.49786 9.39741 5.31019C9.39741 5.12252 9.32286 4.94254 9.19016 4.80984C9.05746 4.67714 8.87748 4.60259 8.68981 4.60259C8.50214 4.60259 8.32216 4.67714 8.18946 4.80984L4.72226 8.27705C4.6562 8.34256 4.60378 8.4205 4.568 8.50638C4.53222 8.59225 4.5138 8.68436 4.5138 8.7774C4.5138 8.87043 4.53222 8.96254 4.568 9.04841C4.60378 9.13429 4.6562 9.21223 4.72226 9.27774Z' fill='%239E9E9E'/%3E%3C/svg%3E%0A"); background-repeat: no-repeat;
+  background-size: 14px 14px; background-position: left 20px center;
+}
+
+select[readonly] {
+  background: #eee;
+  pointer-events: none;
+  touch-action: none;
+}
+
+// Form Label
+.form-label, .col-form-label  {
+  font-weight: 300; padding: 0; margin-bottom: rem(8px);
+  &.required {
+    &:after { content: '*'; margin-left: rem(5px);}
+  }
+}
+
+// Default Form
+.default-form {
+  .mb-3 { margin-bottom: rem(20px) !important;}
+
+  legend {
+    font-size: rem(18px); margin-bottom: rem(14px);
+  }
+
+  fieldset {
+    +fieldset {
+      border-top: 1px solid $grey-10; margin-top: rem(5px); padding-top: rem(20px);
+    }
+  }
+}
+
+.attribut-row  {
+  $gutter: 5px;
+  .row { margin-left: -$gutter; margin-right: -$gutter; }
+  [class*="col-"], .col { padding-left: $gutter; padding-right: $gutter; }
+  +.attribut-row {
+    border-top: 1px dashed $grey-10; padding-top: rem(20px); margin-top: rem(5px);
+  }
+
+  .col-attribut-btn {
+    flex: 0 0 60px;
+    max-width: 60px;
+  }
+
+  .col-attribut-btns {
+    @extend .clearfix;
+    flex: 0 0 120px;
+    max-width: 120px;
+    .form-label { display: block;}
+    .btn {
+      float: left;
+      +.btn{margin-left: rem(10px);}
+    }
+  }
+}
+
+.default-form-actions {
+  @extend .clearfix; display: flex; align-items: center; padding-top: rem(10px);
+
+  &.default-form-top { align-items: initial;}
+
+  .default-form-info { float: left;
+    .btn {
+      +.help-text { margin-top: rem(25px);}
+    }
+  }
+
+  .default-form-btns {
+    float: right; margin-left: auto;
+    .btn {
+      +.btn { margin-left: rem(10px);}
+    }
+  }
+}
+
+.help-text { font-weight: 300;}
+
+// Input Radio
+.form-radio {
+  input[type="radio"] {
+    display: inline; position: absolute; left: -9999px;
+    // &:focus {
+    //   + label {
+    //     color: $primary;
+    //   }
+    // }
+    &:checked {
+      + label {
+        .icon {
+          &:before { opacity: 1; }
+        }
+      }
+    }
+    + label {
+     font-weight: 500; cursor: pointer; display: block; margin-bottom: 0;
+     .icon {
+      display: inline-block; width: 14px; height: 14px; margin: rem(3px) rem(5px) 0 0; vertical-align: top; cursor: pointer; border-radius: 50%; background-color: $white; border: 1px solid transparentize($dark-grey,0.5); position: relative; -webkit-transition: background-color 0.4s linear; -o-transition: background-color 0.4s linear; -moz-transition: background-color 0.4s linear; transition: background-color 0.4s linear;
+      &:before { transition: 0.3s; content: ''; display: block; width: 6px; height: 6px; background-color: $primary; border-radius: 50%; opacity: 0; position: absolute; top: 50%; transform: translateY(-50%); right: 3px; }
+     }
+     .label-align { display: inline-block; width: calc(100% - 30px); }
+    }
+  }
+}
+
+// Input Checkbox
+.form-checkbox {
+  input[type="checkbox"] {
+    display: inline; position: absolute; left: -9999px;
+    // &:focus {
+    //   + label {
+    //     color: $primary;
+    //   }
+    // }
+    &:checked {
+      + label {
+        .icon {
+          &:before { opacity: 1; }
+        }
+      }
+    }
+    + label {
+     cursor: pointer; font-weight: 500; display: block; margin-bottom: 0s;
+     .icon {
+      display: inline-block; width: 15px; height: 15px; margin: rem(3px) rem(5px) 0 0; vertical-align: top; cursor: pointer; background-color: $white; border: 1px solid transparentize($dark-grey,0.5); position: relative; -webkit-transition: background-color 0.4s linear; -o-transition: background-color 0.4s linear; -moz-transition: background-color 0.4s linear; transition: background-color 0.4s linear;
+      &:before { transition: 0.3s; @include zmdi; opacity: 0; content: "\f26b"; display: block; color: $primary; position: absolute; top: 50%; transform: translateY(-50%); }
+     }
+     .label-align { display: inline-block; width: calc(100% - 30px); }
+     a { color: $text-color; text-decoration: underline;}
+    }
+  }
+}
+.checkbox label { padding-left: 0; }
+
+// Switch
+.switch-block {
+  position: relative; cursor: pointer; display: inline-block; width: 28px;
+
+  // Checkbox
+  &.switch-checkbox-block {
+    input[type="checkbox"] {
+      display: inline; position: absolute; left: -9999px;
+      &:checked {
+        +.btn-switch {
+          .switch-box {
+            background: $primary;
+            &:before { left: 14px; }
+          }
+        }
+      }
+    }
+  }
+
+  .btn-switch {
+    &:hover, &:focus { text-decoration: none;} padding-right: rem(43px);
+
+    .switch-box {
+      display: inline-block;
+      position: absolute; top: 4px; right: 0px; width: 28px; height: 16px; cursor: pointer; background: $grey-10; font-weight: 400; font-size: rem(14px); color: $text-color; -webkit-transition: background 0.3s, text-indent 0.3s; -moz-transition: background 0.3s, text-indent 0.3s; -o-transition: background 0.3s, text-indent 0.3s; transition: background 0.3s, text-indent 0.3s; text-indent: 45px; border-radius: 25px; text-transform: uppercase;
+
+      &:before {
+        content: ''; width: 12px; height: 12px; border-radius: 25px; background: $white; position: absolute; z-index: 2; top: 2px; left: 2px; display: block; -webkit-transition: left 0.3s; -moz-transition: left 0.3s; -o-transition: left 0.3s; transition: left 0.3s;
+      }
+    }
+
+    .switch-text {
+      font-size: rem(14px); cursor: pointer;
+      i { margin-right: rem(7px); color: $primary; display: inline-block; vertical-align: middle;}
+    }
+
+    &.active {
+      .switch-box {
+        &:before { left: 14px;}
+      }
+    }
+  }
+}
+
+
+// Select
+.form-select, .btn-select-a11y {
+  height: $input-height; background-color: $input-color; padding-right: rem(40px); padding-left: rem(20px); color: $text-color; background-image: url("data:image/svg+xml,%3Csvg width='7' height='4' viewBox='0 0 7 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.5 3.35351L0 0H7L3.5 3.35351Z' fill='black'/%3E%3C/svg%3E%0A"); background-size: 7px 4px; background-position: right 20px center; border-color: $grey-10; background-repeat: no-repeat;
+  &:-moz-focusring { /*color: transparent;*/ text-shadow: 0 0 0; }
+  &:focus { box-shadow: none; border-color: $primary; outline: none; }
+  &:focus::-ms-value { background: $input-color; color: $text-color; }
+  &:required:invalid {
+    color: transparentize($dark-grey,0.5);
+  }
+  option {
+    &:invalid { color: transparentize($dark-grey,0.5);}
+    &[selected][disabled] {
+      display: none;
+    }
+  }
+}
+
+.select-a11y {
+  .a11y-container {
+    border: 1px solid $grey-10; border-top: 0; border-radius: 0px 0px 3px 3px;
+  }
+  .a11y-suggestion {
+    padding: rem(12px) rem(20px); transition: .3s; outline: none; background: $grey;
+    &[aria-selected="true"] { color: $primary; background: $grey;}
+    &:hover, &:focus { background: rgba($primary, 0.05)}
+    +.a11y-suggestion { border-top: 1px solid $grey-10;}
+  }
+}
+
+.input-group {
+  .select-a11y {
+    flex: 1;
+    .a11y-suggestions {
+      div {
+        .a11y-suggestion {
+          &:first-child { display: none;}
+        }
+      }
+    }
+    &:first-child {
+      .btn-select-a11y { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+    }
+    &:nth-child(2) {
+      .btn-select-a11y { border-radius: 0;}
+    }
+    &:last-child {
+      .btn-select-a11y { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+    }
+  }
+}
+
+.form-datepicker {
+  background-size: 13px 20px; background-position: left 20px center; background-repeat: no-repeat; padding-left: rem(48px);
+  background-image: url("data:image/svg+xml,%3Csvg width='13' height='14' viewBox='0 0 13 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.36364 11.4545C6.4895 11.4545 6.61253 11.4172 6.71718 11.3473C6.82183 11.2774 6.90339 11.178 6.95156 11.0617C6.99972 10.9454 7.01233 10.8175 6.98777 10.694C6.96322 10.5706 6.90261 10.4572 6.81361 10.3682C6.72462 10.2792 6.61123 10.2186 6.48778 10.194C6.36434 10.1695 6.23639 10.1821 6.12011 10.2303C6.00383 10.2784 5.90444 10.36 5.83452 10.4646C5.76459 10.5693 5.72727 10.6923 5.72727 10.8182C5.72727 10.987 5.79432 11.1488 5.91366 11.2682C6.033 11.3875 6.19486 11.4545 6.36364 11.4545ZM9.54545 11.4545C9.67132 11.4545 9.79435 11.4172 9.899 11.3473C10.0036 11.2774 10.0852 11.178 10.1334 11.0617C10.1815 10.9454 10.1941 10.8175 10.1696 10.694C10.145 10.5706 10.0844 10.4572 9.99543 10.3682C9.90644 10.2792 9.79305 10.2186 9.6696 10.194C9.54616 10.1695 9.41821 10.1821 9.30193 10.2303C9.18565 10.2784 9.08626 10.36 9.01634 10.4646C8.94641 10.5693 8.90909 10.6923 8.90909 10.8182C8.90909 10.987 8.97614 11.1488 9.09548 11.2682C9.21482 11.3875 9.37668 11.4545 9.54545 11.4545ZM9.54545 8.90909C9.67132 8.90909 9.79435 8.87177 9.899 8.80184C10.0036 8.73192 10.0852 8.63253 10.1334 8.51625C10.1815 8.39997 10.1941 8.27202 10.1696 8.14858C10.145 8.02514 10.0844 7.91175 9.99543 7.82275C9.90644 7.73375 9.79305 7.67315 9.6696 7.64859C9.54616 7.62404 9.41821 7.63664 9.30193 7.6848C9.18565 7.73297 9.08626 7.81453 9.01634 7.91918C8.94641 8.02383 8.90909 8.14687 8.90909 8.27273C8.90909 8.4415 8.97614 8.60336 9.09548 8.7227C9.21482 8.84205 9.37668 8.90909 9.54545 8.90909ZM6.36364 8.90909C6.4895 8.90909 6.61253 8.87177 6.71718 8.80184C6.82183 8.73192 6.90339 8.63253 6.95156 8.51625C6.99972 8.39997 7.01233 8.27202 6.98777 8.14858C6.96322 8.02514 6.90261 7.91175 6.81361 7.82275C6.72462 7.73375 6.61123 7.67315 6.48778 7.64859C6.36434 7.62404 6.23639 7.63664 6.12011 7.6848C6.00383 7.73297 5.90444 7.81453 5.83452 7.91918C5.76459 8.02383 5.72727 8.14687 5.72727 8.27273C5.72727 8.4415 5.79432 8.60336 5.91366 8.7227C6.033 8.84205 6.19486 8.90909 6.36364 8.90909ZM10.8182 1.27273H10.1818V0.636364C10.1818 0.467589 10.1148 0.305728 9.99543 0.186387C9.87609 0.0670452 9.71423 0 9.54545 0C9.37668 0 9.21482 0.0670452 9.09548 0.186387C8.97614 0.305728 8.90909 0.467589 8.90909 0.636364V1.27273H3.81818V0.636364C3.81818 0.467589 3.75114 0.305728 3.63179 0.186387C3.51245 0.0670452 3.35059 0 3.18182 0C3.01304 0 2.85118 0.0670452 2.73184 0.186387C2.6125 0.305728 2.54545 0.467589 2.54545 0.636364V1.27273H1.90909C1.40277 1.27273 0.917184 1.47386 0.55916 1.83189C0.201136 2.18991 0 2.6755 0 3.18182V12.0909C0 12.5972 0.201136 13.0828 0.55916 13.4408C0.917184 13.7989 1.40277 14 1.90909 14H10.8182C11.3245 14 11.8101 13.7989 12.1681 13.4408C12.5261 13.0828 12.7273 12.5972 12.7273 12.0909V3.18182C12.7273 2.6755 12.5261 2.18991 12.1681 1.83189C11.8101 1.47386 11.3245 1.27273 10.8182 1.27273ZM11.4545 12.0909C11.4545 12.2597 11.3875 12.4215 11.2682 12.5409C11.1488 12.6602 10.987 12.7273 10.8182 12.7273H1.90909C1.74032 12.7273 1.57846 12.6602 1.45911 12.5409C1.33977 12.4215 1.27273 12.2597 1.27273 12.0909V6.36364H11.4545V12.0909ZM11.4545 5.09091H1.27273V3.18182C1.27273 3.01304 1.33977 2.85118 1.45911 2.73184C1.57846 2.6125 1.74032 2.54545 1.90909 2.54545H2.54545V3.18182C2.54545 3.35059 2.6125 3.51245 2.73184 3.63179C2.85118 3.75114 3.01304 3.81818 3.18182 3.81818C3.35059 3.81818 3.51245 3.75114 3.63179 3.63179C3.75114 3.51245 3.81818 3.35059 3.81818 3.18182V2.54545H8.90909V3.18182C8.90909 3.35059 8.97614 3.51245 9.09548 3.63179C9.21482 3.75114 9.37668 3.81818 9.54545 3.81818C9.71423 3.81818 9.87609 3.75114 9.99543 3.63179C10.1148 3.51245 10.1818 3.35059 10.1818 3.18182V2.54545H10.8182C10.987 2.54545 11.1488 2.6125 11.2682 2.73184C11.3875 2.85118 11.4545 3.01304 11.4545 3.18182V5.09091ZM3.18182 8.90909C3.30768 8.90909 3.43071 8.87177 3.53536 8.80184C3.64001 8.73192 3.72158 8.63253 3.76974 8.51625C3.81791 8.39997 3.83051 8.27202 3.80595 8.14858C3.7814 8.02514 3.72079 7.91175 3.63179 7.82275C3.5428 7.73375 3.42941 7.67315 3.30597 7.64859C3.18252 7.62404 3.05457 7.63664 2.93829 7.6848C2.82201 7.73297 2.72263 7.81453 2.6527 7.91918C2.58278 8.02383 2.54545 8.14687 2.54545 8.27273C2.54545 8.4415 2.6125 8.60336 2.73184 8.7227C2.85118 8.84205 3.01304 8.90909 3.18182 8.90909ZM3.18182 11.4545C3.30768 11.4545 3.43071 11.4172 3.53536 11.3473C3.64001 11.2774 3.72158 11.178 3.76974 11.0617C3.81791 10.9454 3.83051 10.8175 3.80595 10.694C3.7814 10.5706 3.72079 10.4572 3.63179 10.3682C3.5428 10.2792 3.42941 10.2186 3.30597 10.194C3.18252 10.1695 3.05457 10.1821 2.93829 10.2303C2.82201 10.2784 2.72263 10.36 2.6527 10.4646C2.58278 10.5693 2.54545 10.6923 2.54545 10.8182C2.54545 10.987 2.6125 11.1488 2.73184 11.2682C2.85118 11.3875 3.01304 11.4545 3.18182 11.4545Z' fill='%23C4C4C4'/%3E%3C/svg%3E%0A");
+}
+
+
+
+// Full custom select
+// https://developer.snapappointments.com/bootstrap-select/
+// .bootstrap-select {
+//   width: 100% !important;
+//
+//   >select.mobile-device:focus { outline: none !important;}
+//
+//   +.dropdown-toggle { outline: none !important;}
+//
+//   >.dropdown-toggle {
+//     outline: none !important;
+//     &.bs-placeholder { color: $text-color !important;}
+//   }
+//
+//   &.show {
+//     .dropdown-toggle {
+//       background: transparent; border-bottom: 1px solid $primary;
+//       &:hover, &:focus { border-bottom: 1px solid $primary;}
+//     }
+//   }
+//
+//   &.dropup {
+//     .dropdown-menu {
+//       margin-top: 0;
+//     }
+//   }
+//
+//   &.init-value {
+//     .dropdown-toggle {
+//       background: transparent; border-bottom: 1px solid $secondary;
+//     }
+//   }
+//
+//   //  Btn
+//   .dropdown-toggle {
+//     @extend .btn; border-radius: 0; background: 0; outline: none !important; border-color: $text-color; color: $text-color !important; background: transparent; font-weight: 400; font-size: rem(16px); padding-right: rem(25px); padding-left: 0; border-bottom: 1px solid $text-color;
+//
+//     &:hover, &:focus { background: transparent !important; box-shadow: none !important; border-bottom: 1px solid $text-color;}
+//
+//     &:after { display: none;}
+//
+//     &[title="empty"]{
+//       .filter-option { display: none;}
+//     }
+//   }
+//
+//   // Menu
+//   .dropdown-menu {
+//     right: 0; border-radius: 0; border: 0; box-shadow: 0 0 10px 0 rgba($black,.15); padding: 0; margin-top: rem(8px); max-height: 300px !important;
+//     li {
+//       position: relative;
+//       + li {
+//         &:before {
+//           content: ''; display: block; position: absolute; top: 0; right: 10px; left: 10px; z-index: 1; background: rgba($text-color,.2); height: 1px;
+//         }
+//       }
+//       &.disabled { display: none;}
+//       &.active {
+//         pointer-events: none;
+//         .dropdown-item {
+//           font-weight: 500;
+//         }
+//       }
+//     }
+//     .dropdown-item {
+//       font-size: rem(16px); appearance: none; padding: rem(13px) rem(20px); position: relative; white-space: normal; color: $secondary;
+//
+//       &:hover, &:focus {
+//         color: $primary; font-weight: 500; background: transparent;
+//       }
+//       &.selected {
+//         color: $primary; font-weight: 500; background: transparent;
+//       }
+//     }
+//   }
+// }
+
+// Select IE
+// Appeareance None
+select::-ms-expand { display: none; }
+// Reboot IE Select normal
+@media all and (min-width:0\0) and (min-resolution:.001dpcm) {
+  .form-select select { padding-right: rem(5px); }
+  .form-select:after { display: none; }
+}
+
+// Datetimepicker
+.datetime {
+  position: relative;
+  &:after { @include zmdi; content: "\f332"; position: absolute; color: $primary; right: 15px; top: 50%; transform: translateY(-50%); font-size: rem(19px); pointer-events: none;}
+}
+
+.datepicker {
+  z-index: 2; width: 100%; max-width: 380px; min-width: 380px; background: $grey; border: 1px solid $grey-10; border-radius: 3px; padding: rem(25px);
+
+  .datepicker-switch {
+    text-transform: capitalize; text-align: center; transition-duration: .3s; border-radius: 0; width: 48px; height: 46px; line-height: 46px; padding: rem(4px) rem(2px); position: relative; font-weight: 300; background: transparent; font-weight: 500;
+
+    &:after {
+      content: ''; width: calc(100% - 4px); height: 44px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: $white; box-shadow: 0px 1px 1px rgba($black, 0.05); border-radius: 3px; z-index: -1; transition: .3s;
+    }
+
+    &:hover, &:focus {
+      background: transparent;  cursor: pointer;  color: $white;
+      &:after {
+        background-color: $primary;
+      }
+    }
+  }
+
+  .table-condensed { width: 100%; }
+
+  .prev, .next {
+    text-align: center; transition-duration: .3s; border-radius: 0; width: 48px; height: 46px; line-height: 46px; padding: rem(4px) rem(2px); position: relative; font-weight: 300; background: transparent; font-size: 0;
+
+    &:after {
+      content: ''; width: 44px; height: 44px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: $white; box-shadow: 0px 1px 1px rgba($black, 0.05); border-radius: 3px; z-index: -1; transition: .3s;
+    }
+
+    &:hover, &:focus {
+      background: transparent;  cursor: pointer;  color: $white;
+      &:after {
+        background-color: $primary;
+      }
+    }
+  }
+
+  .prev {
+    @include icon(arrow-long-left);
+    &:before {
+      font-size: rem(10px); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;
+    }
+  }
+
+  .next {
+    @include icon(arrow-long-right);
+    &:before {
+      font-size: rem(10px); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;
+    }
+  }
+
+  .dow { text-align: center; font-weight: 500; border-bottom: 0; text-transform: capitalize; height: 48px;}
+
+  table {
+    border-collapse: separate; border-spacing: 0;
+    td.day, .month, .year, .century, .decade {
+      text-align: center; transition-duration: .3s; border-radius: 0; width: 48px; height: 46px; line-height: 46px; padding: rem(4px) rem(2px); position: relative; font-weight: 300;
+      &:after {
+        content: ''; width: 44px; height: 44px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: $white; box-shadow: 0px 1px 1px rgba($black, 0.05); border-radius: 3px; z-index: -1; transition: .3s;
+      }
+      &.old, &.new { color: $grey-30; background: transparent; box-shadow: none;
+        &:after {
+          background: transparent; box-shadow: none;
+        }
+      }
+      &.active {
+        background: transparent; cursor: pointer; font-weight: 600; color: $white;
+        &:after {
+          background-color: $primary;
+        }
+      }
+      &.day, .month, .year, .century, .decade {
+        &:hover {
+          background: transparent; cursor: pointer; color: $white;
+          &:after {
+            background-color: $primary;
+          }
+        }
+      }
+      &.today{
+        position: relative;
+        &:before { content: ''; display: inline-block; border: solid transparent; border-width: 0 0 7px 7px; border-bottom-color: $secondary; border-top-color: transparentize($dark-grey,0.2); position: absolute; bottom: 0; right: 0; }
+      }
+      span {
+        display: inline-block; width: 54px; height: 54px; line-height: 54px; margin: 0; cursor: pointer; border-radius: 0; border-radius: 0;
+        &.active, &.focused, &:hover {
+          background: transparent; cursor: pointer; color: $white;
+          &:after {
+            background-color: $primary;
+          }
+        }
+      }
+    }
+    td {
+      text-align: center;
+      span {
+        display: inline-block; height: 54px !important; margin: 0; cursor: pointer; border-radius: 0; border-radius: 0;
+        &.active, &.focused, &:hover {
+          background: transparent; cursor: pointer; color: $white;
+          &:after {
+            background-color: $primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Input File
+// .form-file {
+//   width: 0.1px; height: 0.1px; opacity: 0; overflow: hidden; position: absolute; z-index: -1; display: none !important;
+//   + label {
+//     font-size: rem(14px); font-weight: 700; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; display: inline-block; overflow: hidden; padding: rem(10px) rem(20px);  color: $primary; border: 1px solid $primary; background-color: $white; padding: 0;
+//     &:hover {
+//       border-color: $secondary;
+//       strong { background-color: $secondary; }
+//     }
+//     strong { height: 100%; color: $white; background-color: $primary; display: inline-block; padding: rem(10px) rem(20px); }
+//     svg { width: 16px; height: 16px; vertical-align: middle; fill: currentColor; margin-top: rem(-4px); margin-right: rem(4px);}
+//     span { width: 200px; min-height: 32px; display: inline-block; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; vertical-align: top; background: $white; padding: rem(10px) rem(20px); }
+//   }
+//   &:focus , &.has-focus{
+//     + label {
+//       outline: none; border-color: $secondary;
+//     }
+//   }
+// }

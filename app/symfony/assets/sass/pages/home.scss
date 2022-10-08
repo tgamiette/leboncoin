@@ -1,0 +1,191 @@
+/* ---- Home ---- */
+.main-skaneur-wrap {
+  padding: rem(40px) 0 rem(50px);
+}
+
+.table-section {
+  box-shadow: 0px 4px 40px rgba($black, 0.07); border-radius: 10px; background: $white; padding: rem(20px); border: 1px solid $grey-10;
+
+  &.table-top-section {
+    box-shadow: 0px 3px 8px rgba($black, 0.07);
+  }
+
+  // Tab Content
+  .tab-content & {
+    border-radius: 0 10px 10px 10px;
+  }
+
+  // Instance
+  .table-instance-section { padding-top: rem(15px);}
+}
+
+.tab-content { position: relative;}
+
+.nav-tabs-header {
+  @extend .clearfix;
+
+  .nav-tabs {
+    float: left; margin-top: rem(13px); margin-bottom: rem(-1px); position: relative; z-index: 2;
+    li {
+      float: left;
+      &:first-child {
+        .nav-link {
+          &:before { display: none;}
+        }
+      }
+      +li { margin-left: rem(15px);}
+    }
+    .nav-link {
+      border-radius: 10px 10px 0 0; color: $text-color; padding: rem(15px) rem(30px); border: 1px solid $grey-10; position: relative; height: 51px; transition: 0s; border-bottom: 0;
+      &:after {
+        content: ''; background-image: url("data:image/svg+xml,%3Csvg width='61' height='52' viewBox='0 0 61 52' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.0297852 0.0302734C2.0179 0.0307382 3.96038 0.629148 5.60691 1.74841C7.25344 2.86768 8.52864 4.45653 9.26822 6.31027L24.201 43.7503C24.9406 45.604 26.2158 47.1929 27.8623 48.3121C29.5088 49.4314 31.4512 50.0298 33.4394 50.0303H0.0397501L0.0297852 0.0302734Z' fill='%23FCFCFD'/%3E%3Cpath d='M60.0297 51.0301H33.4195C31.3284 51.0385 29.2834 50.4131 27.5518 49.2356C25.8201 48.0581 24.4823 46.3833 23.7132 44.43L8.78041 7.00006C8.08864 5.22804 6.88032 3.70716 5.3136 2.63656C3.74688 1.56597 1.89486 0.995575 0 1.00006V5.87733e-05C2.09077 -0.00698337 4.13513 0.618962 5.86653 1.79626C7.59793 2.97356 8.93602 4.64759 9.7063 6.60006L24.6391 44.0301C25.3297 45.8029 26.5377 47.3246 28.1047 48.3953C29.6717 49.4661 31.5243 50.0359 33.4195 50.0301H60.0297V51.0301Z' fill='%23E9E9EB'/%3E%3C/svg%3E%0A"); height: 52px; width: 61px; @include bgc(center, center, transparent); background-size: contain; position: absolute; right: -52px; top: -1px; z-index: 2; pointer-events: none;
+      }
+      &.active {
+        background: $white; font-weight: 600; border-bottom-color: $white; position: relative; z-index: 4;
+        &:before {
+          background-image: url("data:image/svg+xml,%3Csvg width='36' height='30' viewBox='0 0 36 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M24.7108 28.5H0V30H35.8055V0H34.7969V18.5C34.7969 21.1522 33.7342 23.6957 31.8427 25.571C29.9512 27.4464 27.3858 28.5 24.7108 28.5Z' fill='white'/%3E%3Cpath d='M24.7108 29H0V28H24.7108C27.2513 27.9974 29.6869 26.9956 31.4832 25.2146C33.2796 23.4336 34.2899 21.0187 34.2926 18.5V0H35.3012V18.5C35.2985 21.284 34.1819 23.9531 32.1964 25.9217C30.2109 27.8903 27.5188 28.9974 24.7108 29V29Z' fill='%23E9E9EB'/%3E%3C/svg%3E%0A");
+          content:''; height: 30px; width: 36px; @include bgc(center, center, transparent); background-size: contain; position: absolute; left: -35px; bottom: -1px; z-index: 2; pointer-events: none; display: block;
+        }
+        &:after {
+          background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Generator: Adobe Illustrator 25.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Calque_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 61 52' style='enable-background:new 0 0 61 52;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:%23FFFFFF;%7D .st1%7Bfill:%23E9E9EB;%7D%0A%3C/style%3E%3Cpath class='st0' d='M0,0C2,0,4,0.6,5.6,1.7c1.6,1.1,2.9,2.7,3.7,4.6l14.9,37.4c0.7,1.9,2,3.4,3.7,4.6c1.6,1.1,3.6,1.7,5.6,1.7l0,1 L0,51L0,0z'/%3E%3Cpath class='st1' d='M60,51H33.4c-2.1,0-4.1-0.6-5.9-1.8c-1.7-1.2-3.1-2.9-3.8-4.8L8.8,7C8.1,5.2,6.9,3.7,5.3,2.6C3.7,1.6,1.9,1,0,1 V0c2.1,0,4.1,0.6,5.9,1.8C7.6,3,8.9,4.6,9.7,6.6L24.6,44c0.7,1.8,1.9,3.3,3.5,4.4c1.6,1.1,3.4,1.6,5.3,1.6H60V51z'/%3E%3C/svg%3E%0A");
+        }
+        .nav-tag { background: $primary; color: $white;}
+      }
+    }
+    .nav-tag { background: $grey-10; border-radius: 50px; font-size: rem(11px); padding: rem(3px) rem(10px); display: inline-block; vertical-align: middle; margin-left: rem(3px); margin-top: rem(-1px); font-weight: 500;}
+  }
+
+}
+
+.tab-actions-list {
+  position: absolute; top: -70px; right: 0; margin-bottom: rem(15px); z-index: 2;
+  &.tab-actions-static-list { position: static; float: right; margin-bottom: 0;}
+}
+
+// Project
+.intro-p-section {
+  margin-bottom: rem(50px); @extend .clearfix;
+
+  &.intro-alt-section { margin-bottom: rem(45px);}
+
+  .info-p-list {
+    float: left;
+  }
+}
+
+.date-section {
+  margin-bottom: rem(15px); @extend .clearfix;
+
+  .intro-date-list { float: left; margin-bottom: 0;}
+}
+
+
+// Note
+.note-block {
+  box-shadow: 0px 4px 40px rgba($black, 0.07); border-radius: 10px; background: $white; padding: 0; height: 100%; border: 1px solid $grey-10;
+}
+
+.note-head-block {
+  border-bottom: 1px solid $grey-10; padding: rem(15px) rem(20px);
+}
+
+.note-list {
+  padding: rem(20px) rem(20px) rem(15px); overflow-y: auto;
+
+  &.note-empty-list { display: flex; justify-content: center; align-items: center;}
+}
+
+.note-date-item {
+  +.note-date-item { margin-top: rem(15px);}
+
+  .note-date-block {
+    text-align: center; margin-bottom: rem(10px); position: relative;
+    &:before {
+      content: ''; display: block; height: 1px; background: $grey-10; position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); z-index: 1;
+    }
+    .note-date {
+      border: 1px solid $grey-10; border-radius: 100px; font-weight: 300; font-size: rem(14px); display: inline-block; padding: rem(6px) rem(15px); background: $white; z-index: 2; position: relative;
+    }
+  }
+}
+
+.note-item {
+  +.note-item { margin-top: rem(15px);}
+  @extend .clearfix;
+  .note-user-img { float: left; width: 35px; height: 35px; border: 1px solid $grey-10; @include bgc(center, center, $grey); border-radius: 50%;}
+
+
+  .note-user-block {
+
+    @extend .clearfix; padding: rem(8px) 0 rem(10px);
+
+    .note-user-name { float: left; font-weight: 500; margin-right: rem(10px);}
+    .note-hour { float: left; font-weight: 300; font-size: rem(14px); color: $grey-20; margin-top: rem(1px);}
+  }
+
+  .note-message { margin-bottom: rem(10px);}
+
+  .note-content { float: left; width: calc(100% - 35px); padding-left: rem(15px);}
+
+  .note-actions {
+    margin-bottom: 0;
+    li {
+      &:not(:last-child){ margin-right: rem(15px);}
+    }
+  }
+}
+
+.note-form {
+  padding: 0 rem(20px) rem(20px);
+}
+.note-form-content {
+  border: 0; height: 95px; border-radius: 3px; position: relative;
+  .mb-3 { margin-bottom: 0 !important;}
+  label { display: none;}
+  .form-control { height: 95px; min-height: 95px; padding-right: rem(100px);}
+  .btn { position: absolute; z-index: 2; right: 30px; bottom: 13px;}
+}
+
+.twitter-typeahead { display: block !important;}
+
+.tt-hint {
+  color: rgba($text-color,.4);
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance:none;
+}
+
+.tt-menu {
+  border-radius: 3px; box-shadow: 0 0 4px 0 rgba($black, 0.2); background-color: $white; padding: rem(15px) 0; width: 100%; margin-top: rem(10px);
+  @include max(xs){ left: -47px !important; right: -56px; }
+
+  .tt-suggestion {
+    font-size: rem(16px); padding: rem(5px) rem(20px); cursor: pointer; @extend .clearfix; font-weight: 300; min-width: 405px; transition: .3s; color: $text-color;
+    strong { font-weight: 500;}
+
+    @include max(xs){ min-width: auto;}
+
+    &:hover, &:focus {  background-color: rgba($primary, 0.1); text-decoration: none;}
+  }
+}
+
+.search-input-form { position: relative;}
+
+.autocomplete-choices {
+  border-radius: 3px; box-shadow: 0 0 4px 0 rgba($black, 0.2); background-color: $white; padding: rem(19px) rem(30px); width: calc(100% - 17px); margin-top: rem(10px);
+  position: absolute; left: 9px; top: calc(100% - 20px); right: 0; z-index: 10;
+
+  ul {
+    list-style: none; margin-bottom: 0;
+    li {
+      padding: rem(11px) 0; color: $text-color; cursor: pointer; transition: .3s;
+      &:hover, &:focus { color: $primary;}
+
+      +li { border-top: 1px solid $grey-10;}
+    }
+  }
+}

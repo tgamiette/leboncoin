@@ -1,0 +1,25 @@
+<div class="modal alert-modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Close -->
+      <button type="button" class="btn btn-close" data-bs-dismiss="modal"><i class="icon-close"></i> <span class="visually-hidden">Fermer</span></button>
+
+      <!-- Content -->
+      <div class="modal-body">
+        <form class="" action="index.html" method="post">
+          <div class="modal-icons" style="background-image:url('{{ asset('images/icons/delete-icons.svg') }}')"></div>
+          <div class="modal-action-text">
+            Êtes-vous sur de vouloir supprimer ?
+          </div>
+
+          {% include 'modals/modal.error.html.twig' %}
+          
+          <div class="modal-actions">
+            <button type="button" class="btn btn-grey-20" data-bs-dismiss="modal">Annuler</button>
+            <button id="confirmDelete" type="button" class="btn btn-outline-danger btn-icon-left"><i class="icon-trash"></i>Supprimer définitivement</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

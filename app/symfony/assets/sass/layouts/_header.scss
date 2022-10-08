@@ -1,0 +1,56 @@
+/* ---- Header ---- */
+// Header Skaneur
+.header-skaneur-wrap {
+  background: $black; padding: rem(20px) 0 rem(40px); color: $white;
+}
+
+  .header-logo {
+    float: left; width: 130px; margin-right: rem(70px);
+  }
+
+  // Title
+  .header-skaneur-title { font-size: rem(32px); margin-bottom: 0;}
+
+  // Nav
+  .header-skaneur-top {
+    margin-bottom: rem(40px); @extend .clearfix;
+
+    // Primary
+    .header-menu-wrap & { margin-bottom: rem(15px);}
+  }
+
+  .header-skaneur-nav {
+    float: left;
+
+    li {
+      &:not(:last-child) { margin-right: rem(35px);}
+    }
+
+    a {
+      color: $white; display: inline-block;
+      &:after {
+        content: ''; height: 2px; background: $white; display: block; margin-top: rem(15px); opacity: 0; transition: .3s;
+      }
+      &:hover, &:focus { text-decoration: none; font-weight: 500;}
+      &.active {
+        font-weight: 600;
+        &:after { opacity: 1;}
+      }
+    }
+  }
+
+  // Logout Link
+  .logout-link {
+    float: right; font-weight: 600; color: $white;
+    &:hover, &:focus { color: $white; text-decoration: none; }
+  }
+
+  // Search
+  .search-form {
+    max-width: 1070px; width: 100%; margin: 0 auto;
+
+    .col-action {
+      flex: 0 0 186px;
+      max-width: 186px;
+    }
+  }
