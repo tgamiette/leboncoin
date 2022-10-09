@@ -1,17 +1,76 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Register{% endblock %}
-
 {% block body %}
-    <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+
+
+
+
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <div class="mb-md-5 mt-md-4 pb-5">
+
+                                <h2 class="fw-bold mb-2 text-uppercase">Inscription</h2>
+                                <p class="text-white-50 mb-5">Veuillez renseignez vos informations</p>
+
+                                <div class="form-outline form-white mb-4">
+                                    {{ form_row(registrationForm.email) }}
+{#                                    <label class="form-label" style="color: orange" for="email">Email</label>#}
+{#                                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail"#}
+{#                                           class="form-control form-control-lg"#}
+{#                                           autocomplete="email" required autofocus>#}
+                                </div>
+
+                                <div class="form-outline form-white mb-4">
+                                    {{ form_row(registrationForm.plainPassword, {
+                                        label: 'Mot de passe'
+                                    }) }}
+
+                                    {#                                    <label class="form-label" style="color: orange"#}
+{#                                           for="inputPassword">{{ 'app.login.password'|trans }}</label>#}
+
+{#                                    <input type="password" name="password" id="inputPassword"#}
+{#                                           class="form-control form-control-lg" autocomplete="current-password"#}
+{#                                           required>#}
+{#                                    >#}
+                                </div>
+                                {#                                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.#}
+                                {#                                    See https://symfony.com/doc/current/security/remember_me.html#}
+                                {#                            #}
+                                {{ form_row(registrationForm.agreeTerms) }}
+
+
+                                <p class="small mb-5 pb-lg-2"><a class="text-white-50"
+                                                                 href="#!">{{ 'app.login.forgot_password'|trans }}</a>
+                                </p>
+
+                                <button type="submit" class="btn btn-outline-light btn-lg px-5">{{ 'app.menu.login'|trans }}</button>
+
+                                <div class="d-flex justify-content-center mt-4 pt-1"
+                                     style="display : flex;align-items : center;justify-content : center;">
+                                    {#                                        <a href="#!" class="text-white"><i style="color: dodgerblue" class="fab fa-facebook-f fa-lg"></i></a> #}
+                                    <a href="#!" class="text-white"><img width=" 40" height="40"
+                                                                         src="{{ asset('images/Facebook-f_Logo-Blue-Logo.wine.svg') }}"></a>
+                                    <a href="#!" class="text-white"><img width=" 25" height="25"
+                                                                         src="{{ asset('images/Google__G__Logo.svg') }}"></a>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="mb-0"><a href='{{ path("app_register") }}' class='text-white-50 fw-bold'> {{ 'app.login.not_account'|trans }}</a>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     {{ form_end(registrationForm) }}
+
 {% endblock %}

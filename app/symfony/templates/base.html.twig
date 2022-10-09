@@ -22,46 +22,87 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand mb-0 h1" href="{{ path('app_home') }}">Leboncoin</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
+<header>
+    <nav class="navbar navbar-expand-lg bg-white sticky-top navbar-light p-3 shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-shop me-2"></i>
+                <img width="99" src="{{ asset('images/Leboncoin_Logo.svg') }}">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="mx-auto my-3 d-lg-none d-sm-block d-xs-block">
+                <div class="input-group">
+                    <span class="border-warning input-group-text bg-warning text-white"><i
+                                class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="form-control border-warning" style="color:#7a7a7a">
+                    <button class="btn btn-warning text-white">Search</button>
+                </div>
+            </div>
+            <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+                <div class="ms-auto d-none d-lg-block">
+                    <div class="input-group">
+                        <span class="border-warning input-group-text bg-warning text-white"><i
+                                    class="fa-solid fa-magnifying-glass"></i></span>
+                        <input type="text" class="form-control border-warning" style="color:#7a7a7a">
+                        <button class="btn btn-warning text-white">Search</button>
+                    </div>
+                </div>
+                <ul class="navbar-nav ms-auto ">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-uppercase active" aria-current="page"
+                           href="#">{{ 'app.menu.offers'|trans }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-uppercase" href="#">{{ 'products'|trans }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-uppercase" href="#">{{ 'app.menu.catalog'|trans }}</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto ">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 position-relative" href="#">
+                            <i class="icon-arrow-long-left"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                               0
+                            </span>
+                            {{ 'app.menu.cart'|trans() }}</a>
+                    </li>
+
+                    {% if app.user %}
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle mx-2" data-bs-toggle="dropdown" aria-expanded="false"
+                               href="#"> {{ 'app.menu.account'|trans() }}</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Halawakba</a></li>
+                                <li><a class="dropdown-item" href="#">{{ 'app.menu.profil'|trans }}</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item"
+                                       href="{{ path('app_logout') }}">{{ 'app.menu.logout'|trans() }}</a></li>
+                            </ul>
                         </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" href="{{ path('app_login') }}">
+                                <i class=""></i> {{ 'app.menu.login'|trans() }}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
-{% block body %}{% endblock %}
+    </nav>
+
+</header>
+<div class="container">
+
+    {% block body %}{% endblock %}
+</div>
 </body>
 </html>

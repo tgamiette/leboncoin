@@ -2,8 +2,8 @@
 @import 'variables';
 // Bootstrap
 @import "bootstrap";
-
-
+//Fontawesome
+@import "fontawesome";
 //
 @import "mixins/bg-cover";
 @import "mixins/circle";
@@ -21,9 +21,8 @@
 @import "components/buttons";
 @import "components/links";
 @import "components/texts";
-//@import "components/modals";
+@import "components/modals";
 @import "components/tables";
-@import "components/commons";
 @import "components/fonts";
 @import "components/forms";
 //@import "components/lists";
@@ -35,6 +34,7 @@
 //@import "layouts/footer";
 ////
 ////// Pages
-//@import "pages/home";
+@import "pages/home";
+@import "pages/login";
 //@import "pages/cms";
 //@import "pages/error";

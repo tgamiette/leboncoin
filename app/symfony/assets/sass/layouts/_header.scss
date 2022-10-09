@@ -1,6 +1,6 @@
 /* ---- Header ---- */
 // Header Skaneur
-.header-skaneur-wrap {
+.header-wrap {
   background: $black; padding: rem(20px) 0 rem(40px); color: $white;
 }
 
@@ -9,17 +9,17 @@
   }
 
   // Title
-  .header-skaneur-title { font-size: rem(32px); margin-bottom: 0;}
+  .header-title { font-size: rem(32px); margin-bottom: 0;}
 
   // Nav
-  .header-skaneur-top {
+  .header-top {
     margin-bottom: rem(40px); @extend .clearfix;
 
     // Primary
     .header-menu-wrap & { margin-bottom: rem(15px);}
   }
 
-  .header-skaneur-nav {
+  .header-nav {
     float: left;
 
     li {
