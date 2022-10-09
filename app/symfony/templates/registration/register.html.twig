@@ -23,13 +23,11 @@
                                 {{ form_row(registrationForm.plainPassword, {
                                     label: 'Mot de passe'
                                 }) }}
-                            </div>
+                            </div> <p class="small mb-5 pb-lg-2">
                             {{ form_row(registrationForm.agreeTerms) }}
-                            <p class="small mb-5 pb-lg-2"><a class="text-white-50"
-                                                             href="#!">{{ 'app.login.forgot_password'|trans }}</a>
+
                             </p>
-                            <button type="submit"
-                                    class="btn btn-outline-light btn-lg px-5">{{ 'app.menu.login'|trans }}</button>
+                            <button type="submit" class="btn btn-outline-light btn-lg px-5">{{ 'app.menu.login'|trans }}</button>
                             <div class="d-flex justify-content-center mt-4 pt-1"
                                  style="display : flex;align-items : center;justify-content : center;">
                                 {#                                        <a href="#!" class="text-white"><i style="color: dodgerblue" class="fab fa-facebook-f fa-lg"></i></a> #}
