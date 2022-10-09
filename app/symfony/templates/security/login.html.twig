@@ -3,40 +3,87 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+    <form method="post">
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                            <div class="card-body p-5 text-center">
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+                                {% if error %}
+                                    <div role="alert"
+                                         class="alert alert-danger alert-dismissible fade show">{{ error.messageKey|trans(error.messageData, 'security') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                                    </div>
+                                {% endif %}
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
+                                {% if app.user %}
+                                    <div class="mb-3">
+                                        You are logged in as {{ app.user.userIdentifier }}, <a
+                                                href="{{ path('app_logout') }}">Logout</a>
+                                    </div>
+                                {% endif %}
+                                <div class="mb-md-5 mt-md-4 pb-5">
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
+                                    <h2 class="fw-bold mb-2 text-uppercase">{{ 'app.login.authenticate'|trans }}</h2>
+                                    <p class="text-white-50 mb-5">{{ 'app.login.info'|trans }}</p>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+                                    <div class="form-outline form-white mb-4">
+                                        <label class="form-label" style="color: orange" for="email">Email</label>
+                                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                                               class="form-control form-control-lg"
+                                               autocomplete="email" required autofocus>
+                                    </div>
+
+                                    <div class="form-outline form-white mb-4">
+                                        <label class="form-label" style="color: orange"
+                                               for="inputPassword">{{ 'app.login.password'|trans }}</label>
+
+                                        <input type="password" name="password" id="inputPassword"
+                                               class="form-control form-control-lg" autocomplete="current-password"
+                                               required>
+
+                                        <input type="hidden" name="_csrf_token"
+                                               value="{{ csrf_token('authenticate') }}"
+                                        >
+                                    </div>
+{#                                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.#}
+{#                                    See https://symfony.com/doc/current/security/remember_me.html#}
+{#                            #}
+                                    <div class="checkbox mb-3">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" name="_remember_me"> Remember me
+                                        </label>
+                                    </div>
+
+                                    <p class="small mb-5 pb-lg-2"><a class="text-white-50"
+                                                                     href="#!">{{ 'app.login.forgot_password'|trans }}</a>
+                                    </p>
+
+                                    <button class="btn btn-outline-light btn-lg px-5" type="submit">
+                                        {{ 'app.menu.login'|trans }}
+                                    </button>
+                                    <div class="d-flex justify-content-center mt-4 pt-1"
+                                         style="display : flex;align-items : center;justify-content : center;">
+                                        {#                                        <a href="#!" class="text-white"><i style="color: dodgerblue" class="fab fa-facebook-f fa-lg"></i></a> #}
+                                        <a href="#!" class="text-white"><img width=" 40" height="40"
+                                                                             src="{{ asset('images/Facebook-f_Logo-Blue-Logo.wine.svg') }}"></a>
+                                        <a href="#!" class="text-white"><img width=" 25" height="25"
+                                                                             src="{{ asset('images/Google__G__Logo.svg') }}"></a>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="mb-0"><a href='{{ path("app_register") }}' class='text-white-50 fw-bold'> {{ 'app.login.not_account'|trans }}</a>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </form>
 {% endblock %}

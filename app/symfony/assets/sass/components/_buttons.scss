@@ -124,8 +124,10 @@
 }
 
 .btn-close {
+  color: red;
+  background: none;
   position: absolute;right: 25px; top: 25px; z-index: 2; padding: 10px; line-height: 1; font-size: rem(12px); min-height: auto;
-  &:hover, &:focus { color: $primary;}
+  &:hover, &:focus { color: $warning;}
 }
 
 .btn-favorite {

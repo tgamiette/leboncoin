@@ -1,0 +1,17 @@
+app:
+    menu:
+        account: Mon compte
+        cart: Panier
+        login: Se connecter
+        logout: Se déconnecter
+        catalog: Catalogues
+        offers: Annonces
+        profil: Voir profile
+    login:
+        forgot_password: Alzheimer ? Cliques ici
+        authenticate: Authentification
+        info: Merci de rentrer votre identifiant et votre mot de passe!
+        remember: Se souvenir de moi
+        password: Mot de passe
+        not_account: Pas de compte ? Cliques ici
+dont_have_an_account_sign_up: ""

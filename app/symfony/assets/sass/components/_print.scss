@@ -5,7 +5,7 @@
 
   // Structure
   body { background: $white !important; padding: 0; margin: 0;}
-  .footer-skaneur-wrap { display: none !important; }
+  .footer-wrap { display: none !important; }
 
   // Commons
   .table-section  { box-shadow: none !important; border-radius: 0 !important; border: 0 !important; padding: 0!important;}
@@ -30,7 +30,7 @@
   .default-table thead th , .default-table tbody td { padding: rem(6px) rem(20px);}
   .default-table tbody td.td-180 { width: 300px !important;}
   .default-table tbody td.td-attribut { padding-left: rem(50px) !important;}
-  .table-instance-section, .into-p-title, .info-p-list, .footer-skaneur-wrap { padding: 0 rem(40px) !important;}
+  .table-instance-section, .into-p-title, .info-p-list, .footer-wrap { padding: 0 rem(40px) !important;}
 
   // Link
   .ext-link {
