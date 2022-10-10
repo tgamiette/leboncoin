@@ -1,0 +1,73 @@
+
+<div style="margin: 50px 0;">
+    <h2>Les questions utiles</h2>
+    <div style="display: flex; flex-direction: row;align-items: flex-start; justify-content: space-between; gap: 60px; margin: 30px 0;">
+        {% if questions is empty %}
+            <p>Aucune question n'a été posé pour cet annonce</p>
+        {% else %}
+            <div style="width: 60%;">
+                {% for question in questions %}
+
+                    <div class="card" style="margin: 20px 0;padding: 20px; border: none; border-bottom: 1px solid #00000020;border-radius: 0;">
+                        <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;border-radius:0;">
+                            <div class="avatar avatar-xl">
+                                <img class="rounded-circle" src="https://randomuser.me/api/portraits/med/men/{{ question.id }}.jpg" />
+                            </div>
+                            <H6>{{ question.user.pseudo }}</H6>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ question.comment }} ?</h5>
+                        </div>
+
+
+                        <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;">
+                            <div>Publiée le {{ question.createdAt|format_datetime('medium', 'none', locale='fr') }}</div>
+                            <button type="button" class="btn btn-warning">Répondre</button>
+                        </div>
+
+
+                    </div>
+
+                    {% for response in responses %}
+                        {% if question.id == response.question.id %}
+
+                            <div class="card" style="padding: 20px; border: none; border-bottom: 1px solid #00000020;border-radius: 0; margin: 0 0 0 40px;">
+                                <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;border-radius:0;">
+                                    <div class="avatar avatar-xl">
+                                        <img class="rounded-circle" src="https://randomuser.me/api/portraits/med/men/{{ response.id }}.jpg" />
+                                    </div>
+                                    <H6>User</H6>
+                                    <button type="button" class="btn btn-dark">Vendeur</button>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title">{{ response.answer }}</p>
+                                </div>
+
+
+                                <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;">
+                                    <div>Publiée le {{ response.createdAt|format_datetime('medium', 'none', locale='fr') }}</div>
+                                </div>
+
+
+                            </div>
+                        {% endif%}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div style="width: 30%;">
+            <h3>Posez une question ?</h3>
+            {% if is_granted('ROLE_USER') %}
+                {{ form_start(questionForm) }}
+                {{ form_widget(questionForm) }}
+
+                <button type="submit" class="btn btn-warning">Poster</button>
+                {{ form_end(questionForm) }}
+
+            {% else %}
+                <a href="/login" class="btn btn-warning">Veuillez-vous connecter pour ajouter une question</a>
+            {% endif %}
+        </div>
+    </div>
+</div>

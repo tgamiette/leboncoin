@@ -39,6 +39,17 @@ class ResponseRepository extends ServiceEntityRepository
         }
     }
 
+    public function joinQuestions()
+    {
+        return $this->createQueryBuilder("a")
+            ->innerJoin("a.question", "q")
+            ->innerJoin("a.user", "u")
+            ->addSelect("q")
+            ->addSelect("u")
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Response[] Returns an array of Response objects
 //     */

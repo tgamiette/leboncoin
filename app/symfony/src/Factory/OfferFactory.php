@@ -42,6 +42,7 @@ final class OfferFactory extends ModelFactory
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'title' => self::faker()->text(15),
             'price' => self::faker()->randomFloat(),
+            'description' => self::faker()->realTextBetween(200, 400),
             'status' => self::faker()->boolean(),
             'user'=> UserFactory::random()
         ];
