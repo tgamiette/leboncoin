@@ -31,3 +31,6 @@ docker exec symfony-leboncoin sh -c 'symfony console cache:clear'
 docker exec symfony-leboncoin sh -c 'chown -Rf www-data: var/'
 docker exec symfony-leboncoin sh -c 'symfony console d:s:u --force'
 docker exec symfony-leboncoin sh -c 'symfony console d:f:l --append'
+
+docker exec symfony-leboncoin sh -c 'npm install'
+docker exec symfony-leboncoin sh -c 'npm run watch'
