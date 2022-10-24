@@ -13,8 +13,6 @@
     {{ encore_entry_script_tags('main') }}
     {{ encore_entry_script_tags('form') }}
 
-    {% block javascripts %}
-    {% endblock %}
 </head>
 
 <body>
@@ -100,5 +98,18 @@
 
     {% block body %}{% endblock %}
 </div>
+
+
+{% block javascripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#BtnModal").click(function () {
+            $("#exampleModalLong").modal('show');
+            $("#ModalClose").modal('hide');
+        });
+    });
+</script>
+{% endblock %}
 </body>
 </html>
