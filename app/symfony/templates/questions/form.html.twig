@@ -1,11 +1,7 @@
-{% extends 'base.html.twig' %}
+{{ form_start(questionForm) }}
+{{ form_widget(questionForm) }}
 
-{% block title %}Questions & Reponses{% endblock %}
+<button type="submit" class="btn btn-warning">Poster</button>
+{{ form_end(questionForm) }}
 
-{% block body %}
-    {{ form_start(questionForm) }}
-    {{ form_widget(questionForm) }}
-    <button type="submit" class="btn btn-warning">Poster</button>
-    {{ form_end(questionForm) }}
 
-{% endblock %}
