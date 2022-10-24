@@ -13,5 +13,9 @@ app:
         info: Merci de rentrer votre identifiant et votre mot de passe!
         remember: Se souvenir de moi
         password: Mot de passe
+        lastname: Nom
+        pseudo: Pseudo
+        email: Email
+        firstname: Prénom
         not_account: Pas de compte ? Cliques ici
 dont_have_an_account_sign_up: ""
