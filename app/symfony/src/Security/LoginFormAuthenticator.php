@@ -53,10 +53,6 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator {
 //        throw new \Exception('TODO: provide a valid redirect inside ' . __FILE__);
     }
 
-
-
-
-
     protected function getLoginUrl(Request $request): string {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
@@ -66,7 +62,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator {
 
         $token = new PostAuthenticationToken($passport->getUser(), $firewallName, $passport->getUser()->getRoles());
         $token->setAttribute('time', time());
-//        dd('tu vas ou ...?');
+
         return $token;
     }
 }

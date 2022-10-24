@@ -6,6 +6,7 @@ use App\Form\QuestionFormType;
 use App\Repository\OfferRepository;
 use App\Repository\ResponseRepository;
 use App\Repository\QuestionRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,8 +39,8 @@ class OffersController extends AbstractController
             $question = $form->getData();
             $question->setUser($this->getUser());
             $question->setOffer($offer);
-            $question->setCreatedAt(new \DateTime());
-            $question->setUpdatedAt(new \DateTime());
+            $question->setCreatedAt(new DateTime());
+            $question->setUpdatedAt(new DateTime());
 
             $manager->persist($question);
             $manager->flush();

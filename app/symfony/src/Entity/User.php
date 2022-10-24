@@ -43,6 +43,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private string $googleId;
+
     #[ORM\Column(nullable: true)]
     private ?float $rate = null;
 
