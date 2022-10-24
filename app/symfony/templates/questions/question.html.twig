@@ -25,10 +25,10 @@
                             <div>Publiée
                                 le {{ question.createdAt|format_datetime('medium', 'none', locale='fr') }}</div>
 
-
+                    
                             {% if userLogin %}
                                 {% if userLogin.id == offer.user.id %}
-                                    <button type="button" class="btn btn-warning" id="BtnModal" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Répondre</button>
+                                    <button type="button" class="btn btn-warning" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Répondre</button>
                                 {% endif %}
                             {% endif %}
 

@@ -35,6 +35,7 @@ class OffersController extends AbstractController
         $formQuestions = $this->createForm(QuestionFormType::class);
         $formQuestions->handleRequest($request);
 
+<<<<<<< HEAD
         $formAnswer = $this->createForm(AnswerFormType::class);
         $formAnswer->handleRequest($request);
 
@@ -44,12 +45,23 @@ class OffersController extends AbstractController
             $question->setOffer($offer);
             $question->setCreatedAt(new DateTime());
             $question->setUpdatedAt(new DateTime());
+=======
+        $user = $this->getUser();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $question = $form->getData();
+            $question->setUser($this->getUser());
+            $question->setOffer($offer);
+            $question->setCreatedAt(new \DateTime());
+            $question->setUpdatedAt(new \DateTime());
+>>>>>>> 67d8121 ([chnage] change error)
 
             $manager->persist($question);
             $manager->flush();
             return ($this->redirectToRoute('app_offers_id', ['id' => $id]));
         }
 
+<<<<<<< HEAD
         if ($formAnswer->isSubmitted() && $formAnswer->isValid()) {
             $answer = $formAnswer->getData();
             $answer->setUser($this->getUser());
@@ -59,14 +71,22 @@ class OffersController extends AbstractController
             $manager->persist($answer);
             $manager->flush();
             return ($this->redirectToRoute('app_offers_id', ['id' => $id]));
+=======
+            return ($this->redirectToRoute('app_offers',));
+
+>>>>>>> 67d8121 ([chnage] change error)
         }
 
         return $this->render('offers/single.html.twig', [
             'offer' => $offer,
             'questions' => $questions,
             'responses' => $responses,
+<<<<<<< HEAD
             'questionForm' => $formQuestions->createView(),
             'answerForm' => $formAnswer->createView(),
+=======
+            'questionForm' => $form->createView(),
+>>>>>>> 67d8121 ([chnage] change error)
             'userLogin' => $user
         ]);
     }
