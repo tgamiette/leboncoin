@@ -35,12 +35,12 @@ class OffersController extends AbstractController
         $formQuestions = $this->createForm(QuestionFormType::class);
         $formQuestions->handleRequest($request);
 
-<<<<<<< HEAD
         $formAnswer = $this->createForm(AnswerFormType::class);
         $formAnswer->handleRequest($request);
 
         if ($formQuestions->isSubmitted() && $formQuestions->isValid()) {
             $question = $formQuestions->getData();
+<<<<<<< HEAD
             $question->setUser($this->getUser());
             $question->setOffer($offer);
             $question->setCreatedAt(new DateTime());
@@ -50,6 +50,8 @@ class OffersController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $question = $form->getData();
+=======
+>>>>>>> 91a3360 ([fix] commit fix commit)
             $question->setUser($this->getUser());
             $question->setOffer($offer);
             $question->setCreatedAt(new \DateTime());
@@ -61,32 +63,36 @@ class OffersController extends AbstractController
             return ($this->redirectToRoute('app_offers_id', ['id' => $id]));
         }
 
-<<<<<<< HEAD
         if ($formAnswer->isSubmitted() && $formAnswer->isValid()) {
             $answer = $formAnswer->getData();
             $answer->setUser($this->getUser());
-            $answer->setOffer($offer);
+            $answer->setQuestion();
             $answer->setCreatedAt(new \DateTime());
             $answer->setUpdatedAt(new \DateTime());
             $manager->persist($answer);
             $manager->flush();
             return ($this->redirectToRoute('app_offers_id', ['id' => $id]));
+<<<<<<< HEAD
 =======
             return ($this->redirectToRoute('app_offers',));
 
 >>>>>>> 67d8121 ([chnage] change error)
+=======
+>>>>>>> 91a3360 ([fix] commit fix commit)
         }
 
         return $this->render('offers/single.html.twig', [
             'offer' => $offer,
             'questions' => $questions,
             'responses' => $responses,
-<<<<<<< HEAD
             'questionForm' => $formQuestions->createView(),
             'answerForm' => $formAnswer->createView(),
+<<<<<<< HEAD
 =======
             'questionForm' => $form->createView(),
 >>>>>>> 67d8121 ([chnage] change error)
+=======
+>>>>>>> 91a3360 ([fix] commit fix commit)
             'userLogin' => $user
         ]);
     }
