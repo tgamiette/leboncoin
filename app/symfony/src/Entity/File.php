@@ -6,6 +6,7 @@ use App\Repository\FileRepository;
 use App\Traits\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: FileRepository::class)]
 class File
 {
@@ -21,6 +22,22 @@ class File
 
     #[ORM\Column(length: 255)]
     private ?string $path = null;
+
+    /**
+     * @return string|null
+     */
+    public function getPath(): ?string
+    {
+        return $this->path;
+    }
+
+    /**
+     * @param string|null $path
+     */
+    public function setPath(?string $path): void
+    {
+        $this->path = $path;
+    }
 
     #[ORM\ManyToOne(inversedBy: 'files')]
     #[ORM\JoinColumn(nullable: false)]
