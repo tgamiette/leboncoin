@@ -44,7 +44,7 @@ class OffersController extends AbstractController
             $manager->persist($question);
             $manager->flush();
 
-            return ($this->redirectToRoute('app_offers',));
+            return ($this->redirectToRoute('app_offers_id', ['id' => $id]));
 
         }
 
