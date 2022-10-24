@@ -21,3 +21,5 @@ build-dev:
 		docker exec symfony-leboncoin sh -c 'symfony console assets:install public'
 		docker exec symfony-leboncoin sh -c 'symfony console doctrine:schema:update --force'
 		docker exec symfony-leboncoin sh -c 'symfony console cache:clear'
+		docker exec symfony-leboncoin sh -c 'npm install'
+		docker exec symfony-leboncoin sh -c 'npm run watch'
