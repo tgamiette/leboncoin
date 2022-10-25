@@ -1,3 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
 <div class="card"
     style="margin: 20px 0;padding: 20px; border: none; border-bottom: 1px solid #00000020;border-radius: 0;">
    <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;border-radius:0;">
@@ -27,3 +31,5 @@ Répondre à la question de {{question.user.pseudo}}
 <button type="submit" class="btn btn-warning">Poster</button>
 {{ form_end(answerForm) }}
 </div>
+
+{% endblock %}
