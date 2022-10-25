@@ -16,20 +16,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OffersController extends AbstractController
 {
-    #[Route('/offers', name: 'app_offers')]
-    public function index(): Response
-    {
-        return $this->render('offers/index.html.twig', [
-            'controller_name' => 'OffersController',
-        ]);
-    }
-
     #[Route('/offers/{id}', name: 'app_offers_id', methods: ['GET', 'POST'])]
     public function single(QuestionRepository $questionRepository, ResponseRepository $responseRepository, Request $request, EntityManagerInterface $manager, OfferRepository $offerRepository, int $id): Response
     {
         $offer = $offerRepository->findOneBy(['id' => $id]);
-        $questions = $questionRepository->joinUser($id);
-        $responses = $responseRepository->joinQuestions();
         $user = $this->getUser();
 
         $formQuestions = $this->createForm(QuestionFormType::class);
@@ -66,7 +56,6 @@ class OffersController extends AbstractController
         if ($formAnswer->isSubmitted() && $formAnswer->isValid()) {
             $answer = $formAnswer->getData();
             $answer->setUser($this->getUser());
-            $answer->setQuestion();
             $answer->setCreatedAt(new \DateTime());
             $answer->setUpdatedAt(new \DateTime());
             $manager->persist($answer);
@@ -83,8 +72,6 @@ class OffersController extends AbstractController
 
         return $this->render('offers/single.html.twig', [
             'offer' => $offer,
-            'questions' => $questions,
-            'responses' => $responses,
             'questionForm' => $formQuestions->createView(),
             'answerForm' => $formAnswer->createView(),
 <<<<<<< HEAD

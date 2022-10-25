@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Response;
+use App\Entity\Question;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AnswerFormType extends AbstractType
@@ -16,8 +19,14 @@ class AnswerFormType extends AbstractType
         ->add('answer', TextareaType::class, [
             'required' => true,
             'label' => "Réponse",
-            'empty_data' => 'Votre réponse']);
-        ;
+            'empty_data' => 'Votre réponse'])
+        ->add('question', EntityType::class ,[
+            'class' => Question::class,
+            'multiple' => false,
+            'choice_label' => function ($question) {
+                return $question->getId();
+            }
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
