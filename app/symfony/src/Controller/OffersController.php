@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Form\QuestionFormType;
+use App\Form\AnswerFormType;
 use App\Repository\OfferRepository;
 use App\Repository\ResponseRepository;
 use App\Repository\QuestionRepository;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,31 +27,43 @@ class OffersController extends AbstractController {
         $offer = $offerRepository->findOneBy(['id' => $id]);
         $questions = $questionRepository->joinUser($id);
         $responses = $responseRepository->joinQuestions();
-
-        $form = $this->createForm(QuestionFormType::class);
-        $form->handleRequest($request);
-
         $user = $this->getUser();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $question = $form->getData();
+        $formQuestions = $this->createForm(QuestionFormType::class);
+        $formQuestions->handleRequest($request);
+
+        $formAnswer = $this->createForm(AnswerFormType::class);
+        $formAnswer->handleRequest($request);
+
+        if ($formQuestions->isSubmitted() && $formQuestions->isValid()) {
+            $question = $formQuestions->getData();
             $question->setUser($this->getUser());
             $question->setOffer($offer);
-            $question->setCreatedAt(new DateTime());
-            $question->setUpdatedAt(new DateTime());
+            $question->setCreatedAt(new \DateTime());
+            $question->setUpdatedAt(new \DateTime());
 
             $manager->persist($question);
             $manager->flush();
-
             return ($this->redirectToRoute('app_offers_id', ['id' => $id]));
+        }
 
+        if ($formAnswer->isSubmitted() && $formAnswer->isValid()) {
+            $answer = $formAnswer->getData();
+            $answer->setUser($this->getUser());
+            $answer->setOffer($offer);
+            $answer->setCreatedAt(new \DateTime());
+            $answer->setUpdatedAt(new \DateTime());
+            $manager->persist($answer);
+            $manager->flush();
+            return ($this->redirectToRoute('app_offers_id', ['id' => $id]));
         }
 
         return $this->render('offers/single.html.twig', [
             'offer' => $offer,
             'questions' => $questions,
             'responses' => $responses,
-            'questionForm' => $form->createView(),
+            'questionForm' => $formQuestions->createView(),
+            'answerForm' => $formAnswer->createView(),
             'userLogin' => $user
         ]);
     }

@@ -20,6 +20,5 @@ class AppFixtures extends Fixture {
         UserFactory::createMany(10);
         OfferFactory::createMany(50);
         QuestionFactory::createMany(10);
-        ResponseFactory::createMany(10);
     }
 }

@@ -17,6 +17,7 @@ class QuestionFormType extends AbstractType
                 'required' => true,
                 'label' => "Question",
                 'empty_data' => 'Votre question']);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

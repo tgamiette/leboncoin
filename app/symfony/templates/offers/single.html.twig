@@ -11,6 +11,12 @@
             <h3>{{ offer.title }}</h3>
             <p>{{ offer.description }}</p>
             <p>{{ offer.price }}€</p>
+
+            <div class="">
+                <h6>Vendeur :</h6>
+                    <H6>{{ offer.user.pseudo }}</H6>
+                    <a class="btn btn-primary" href="/user/{{ offer.user.id }}">Voir le vendeur</a>
+            </div>
         </div>
     </div>
 
