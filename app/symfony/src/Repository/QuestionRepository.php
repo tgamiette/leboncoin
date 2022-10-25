@@ -39,6 +39,19 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
+    public function joinUser(int $id)
+    {
+        return $this->createQueryBuilder("q")
+            ->innerJoin("q.user", "u")
+            ->innerJoin("q.offer", "o")
+            ->addSelect("u")
+            ->addSelect("o")
+            ->where("o.id = :offer_id")
+            ->setParameter("offer_id", $id)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Question[] Returns an array of Question objects
 //     */

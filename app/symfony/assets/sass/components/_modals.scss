@@ -25,3 +25,8 @@
 .close {
   &:hover, &:focus { outline: none;}
 }
+
+.modal-body > form{
+  display: flex;
+  flex-direction: column-reverse;
+}

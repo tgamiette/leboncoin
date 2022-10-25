@@ -4,6 +4,8 @@ namespace App\DataFixtures;
 
 use App\Entity\User;
 use App\Factory\OfferFactory;
+use App\Factory\QuestionFactory;
+use App\Factory\ResponseFactory;
 use App\Factory\UserFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -17,5 +19,6 @@ class AppFixtures extends Fixture {
     public function load(ObjectManager $manager): void {
         UserFactory::createMany(10);
         OfferFactory::createMany(50);
+        QuestionFactory::createMany(10);
     }
 }

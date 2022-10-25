@@ -1,0 +1,81 @@
+<div style="margin: 50px 0;">
+    <h2>Les questions utiles</h2>
+    <div style="display: flex; flex-direction: row;align-items: flex-start; justify-content: space-between; gap: 60px; margin: 30px 0;">
+        {% if offer.questions is empty %}
+            <p>Aucune question n'a été posé pour cet annonce</p>
+        {% else %}
+            <div style="width: 60%;">
+                {% for question in offer.questions %}
+
+                    <div class="card"
+                         style="margin: 20px 0;padding: 20px; border: none; border-bottom: 1px solid #00000020;border-radius: 0;">
+                        <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;border-radius:0;">
+                            <div class="avatar avatar-xl">
+                                <img class="rounded-circle"
+                                     src="http://cdn.onlinewebfonts.com/svg/img_568656.png" style="width:60px"/>
+                            </div>
+                            <H6>{{ question.user.pseudo }}</H6>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ question.comment }} ?</h5>
+                        </div>
+
+
+                        <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;">
+                            <div>Publiée
+                                le {{ question.createdAt|format_datetime('medium', 'none', locale='fr') }}</div>
+
+                                <p>{{question.id}}</p>
+                            {% if userLogin %}
+                                {% if userLogin.id == offer.user.id %}
+                                    <button type="button" class="btn btn-warning BtnModal" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Répondre</button>
+                                {% endif %}
+                            {% endif %}
+
+
+                        </div>
+
+
+                    </div>
+
+
+                    {% for response in question.responses %}
+                            <div class="card"
+                                 style="padding: 20px; border: none; border-bottom: 1px solid #00000020;border-radius: 0; margin: 0 0 0 40px;">
+                                <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;border-radius:0;">
+                                    <div class="avatar avatar-xl">
+                                        <img class="rounded-circle"
+                                             src="http://cdn.onlinewebfonts.com/svg/img_568656.png" style="width:60px"/>
+                                    </div>
+                                    <H6>{{ response.user.email }}</H6>
+                                    <button type="button" class="btn btn-dark">Vendeur</button>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-title">{{ response.answer }}</p>
+                                </div>
+
+
+                                <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;">
+                                    <div>Publiée
+                                        le {{ response.createdAt|format_datetime('medium', 'none', locale='fr') }}</div>
+                                </div>
+
+
+                            </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div style="width: 30%;">
+            <h3>Posez une question ?</h3>
+            {% if is_granted('ROLE_USER') %}
+                {% include 'questions/form.html.twig' %}
+            {% else %}
+                <a href="/login" class="btn btn-warning">Veuillez-vous connecter pour ajouter une question</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% include 'offers/popupAnswer.html.twig' %}

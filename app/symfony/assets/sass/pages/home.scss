@@ -189,3 +189,8 @@ input[type="search"]::-webkit-search-results-decoration {
     }
   }
 }
+
+.modal-form form{
+  display: flex;
+  flex-direction: column-reverse;
+}
