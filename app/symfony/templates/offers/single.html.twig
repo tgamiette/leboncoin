@@ -53,4 +53,17 @@
         {% endif %}
     </div>
 
+
+
+    <div>
+        {% if userLogin %}
+            {% if userLogin.id == offer.user.id %}
+                <h5>Supprimer votre annonce</h5>
+                <a href="{{ path('app_offer_delete_id', {id: offer.id}) }}">
+                    <button type="button" class="btn btn-warning">Supprimer</button>
+                </a>
+            {% endif %}
+        {% endif %}
+    </div>
+
 {% endblock %}
