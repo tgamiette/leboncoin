@@ -8,24 +8,22 @@ use App\Repository\ResponseRepository;
 use App\Repository\QuestionRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class OffersController extends AbstractController
-{
+class OffersController extends AbstractController {
     #[Route('/offers', name: 'app_offers')]
-    public function index(): Response
-    {
+    public function index(): Response {
         return $this->render('offers/index.html.twig', [
             'controller_name' => 'OffersController',
         ]);
     }
 
     #[Route('/offers/{id}', name: 'app_offers_id', methods: ['GET', 'POST'])]
-    public function single(QuestionRepository $questionRepository, ResponseRepository $responseRepository, Request $request, EntityManagerInterface $manager, OfferRepository $offerRepository, int $id): Response
-    {
+    public function single(QuestionRepository $questionRepository, ResponseRepository $responseRepository, Request $request, EntityManagerInterface $manager, OfferRepository $offerRepository, int $id): Response {
         $offer = $offerRepository->findOneBy(['id' => $id]);
         $questions = $questionRepository->joinUser($id);
         $responses = $responseRepository->joinQuestions();
@@ -57,5 +55,19 @@ class OffersController extends AbstractController
             'userLogin' => $user
         ]);
     }
+
+    #[Route('/offers/search', name: 'app_offers_id', methods: ['GET', 'POST'])]
+    public function searchOffer(Request $request, OfferRepository $offerRepository, PaginatorInterface $paginator): Response {
+
+        $search = $request->query->get('search');
+        $title = $request->query->get('search');
+        $offersQuery = $offerRepository->searchQueryBuilder($title);
+        $pagination = $paginator->paginate($offersQuery, $request->query->getInt('page', 1), 10);
+
+        return $this->render('offers/index.html.twig', [
+            'offers' => $pagination,
+        ]);
+    }
+
 
 }

@@ -9,17 +9,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class GoogleController extends AbstractController {
 
-    #[Route('/connect/google', name: 'connect_google')]
-    public function connectAction(ClientRegistry $clientRegistry): RedirectResponse {
-        //Redirect to google
-
-//        new ClientRegistry()
-
-        return $clientRegistry
-            ->getClient('google')
-            ->redirect([
-                'profile', 'email'
-            ]);
-        return $clientRegistry->getClient('google')->redirect([], []);
-    }
+//    #[Route('/connect/google', name: 'connect_google')]
+//    public function connectAction(ClientRegistry $clientRegistry): RedirectResponse {
+//        //Redirect to google
+//
+////        new ClientRegistry()
+//
+//        return $clientRegistry
+//            ->getClient('google')
+//            ->redirect([
+//                'profile', 'email'
+//            ]);
+//        return $clientRegistry->getClient('google')->redirect([], []);
+//    }
 }

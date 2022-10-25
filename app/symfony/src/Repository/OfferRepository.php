@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Offer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -14,15 +16,12 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Offer[]    findAll()
  * @method Offer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class OfferRepository extends ServiceEntityRepository
-{
-    public function __construct(ManagerRegistry $registry)
-    {
+class OfferRepository extends ServiceEntityRepository {
+    public function __construct(ManagerRegistry $registry) {
         parent::__construct($registry, Offer::class);
     }
 
-    public function save(Offer $entity, bool $flush = false): void
-    {
+    public function save(Offer $entity, bool $flush = false): void {
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {
@@ -30,13 +29,50 @@ class OfferRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Offer $entity, bool $flush = false): void
-    {
+    public function remove(Offer $entity, bool $flush = false): void {
         $this->getEntityManager()->remove($entity);
 
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+
+    private function getOfferQueryBuilder(): QueryBuilder {
+        // Select the orders and their packages
+        $queryBuilder = $this->createQueryBuilder('o');
+
+        //Return the QueryBuilder
+        return $queryBuilder;
+    }
+
+
+
+    public function getOfferPaginated(QueryBuilder $queryBuilder, $page = 1): Paginator {
+        $limit = 20;
+        $firstResult = (abs($page) - 1) * $limit;
+
+        // Add the first and max result limits
+        $queryBuilder
+            ->setFirstResult($firstResult)
+            ->setMaxResults($limit);
+        // Generate the Query
+        $query = $queryBuilder->getQuery();
+
+        // Generate the Paginator
+        return new Paginator($query, true);
+    }
+
+
+    public
+    function searchQueryBuilder($title): QueryBuilder {
+
+        $query = $this->createQueryBuilder('o')
+            ->andWhere('o.title like :title')
+            ->setParameter('title', '%'.$title.'%')
+            ->orderBy('o.title', 'ASC');
+
+        return $query;
     }
 
 //    /**

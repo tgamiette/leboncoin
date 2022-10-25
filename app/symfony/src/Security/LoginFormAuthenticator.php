@@ -56,13 +56,13 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator {
     protected function getLoginUrl(Request $request): string {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
-
-    public function createToken(Passport $passport, string $firewallName): TokenInterface {
-        // read the attribute value
-
-        $token = new PostAuthenticationToken($passport->getUser(), $firewallName, $passport->getUser()->getRoles());
-        $token->setAttribute('time', time());
-
-        return $token;
-    }
+//
+//    public function createToken(Passport $passport, string $firewallName): TokenInterface {
+//        // read the attribute value
+//
+//        $token = new PostAuthenticationToken($passport->getUser(), $firewallName, $passport->getUser()->getRoles());
+//        $token->setAttribute('time', time());
+//
+//        return $token;
+//    }
 }
