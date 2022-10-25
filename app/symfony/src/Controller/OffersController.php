@@ -134,4 +134,16 @@ class OffersController extends AbstractController
     }
 
 
+
+    #[Route('/delete/{id}', name:'app_offer_delete_id')]
+    public function delete(EntityManagerInterface $entityManager, int $id, OfferRepository $offerRepository): Response
+    {
+
+        $offer = $offerRepository->findOneBy(['id' => $id]);
+
+        $entityManager->remove($offer);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_home');
+    }
 }
