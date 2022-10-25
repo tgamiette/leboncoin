@@ -24,11 +24,9 @@
                         <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;">
                             <div>Publiée
                                 le {{ question.createdAt|format_datetime('medium', 'none', locale='fr') }}</div>
-
-                                <p>{{question.id}}</p>
                             {% if userLogin %}
                                 {% if userLogin.id == offer.user.id %}
-                                    <button type="button" class="btn btn-warning BtnModal" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Répondre</button>
+                                    <a href="/offers/{{offer.id}}/answer/{{question.id}}">Répondre</a>
                                 {% endif %}
                             {% endif %}
 
@@ -77,5 +75,3 @@
         </div>
     </div>
 </div>
-
-{% include 'offers/popupAnswer.html.twig' %}

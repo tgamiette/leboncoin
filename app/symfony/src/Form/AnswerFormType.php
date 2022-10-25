@@ -19,14 +19,7 @@ class AnswerFormType extends AbstractType
         ->add('answer', TextareaType::class, [
             'required' => true,
             'label' => "Réponse",
-            'empty_data' => 'Votre réponse'])
-        ->add('question', EntityType::class ,[
-            'class' => Question::class,
-            'multiple' => false,
-            'choice_label' => function ($question) {
-                return $question->getId();
-            }
-        ]);
+            'empty_data' => 'Votre réponse']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

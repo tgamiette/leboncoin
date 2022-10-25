@@ -32,9 +32,6 @@ class OffersController extends AbstractController {
         $formQuestions = $this->createForm(QuestionFormType::class);
         $formQuestions->handleRequest($request);
 
-        $formAnswer = $this->createForm(AnswerFormType::class);
-        $formAnswer->handleRequest($request);
-
         if ($formQuestions->isSubmitted() && $formQuestions->isValid()) {
             $question = $formQuestions->getData();
             $question->setUser($this->getUser());
@@ -47,24 +44,36 @@ class OffersController extends AbstractController {
             return ($this->redirectToRoute('app_offers_id', ['id' => $id]));
         }
 
-        if ($formAnswer->isSubmitted() && $formAnswer->isValid()) {
-            $answer = $formAnswer->getData();
-            $answer->setUser($this->getUser());
-            $answer->setOffer($offer);
-            $answer->setCreatedAt(new \DateTime());
-            $answer->setUpdatedAt(new \DateTime());
-            $manager->persist($answer);
-            $manager->flush();
-            return ($this->redirectToRoute('app_offers_id', ['id' => $id]));
-        }
-
         return $this->render('offers/single.html.twig', [
             'offer' => $offer,
             'questions' => $questions,
             'responses' => $responses,
             'questionForm' => $formQuestions->createView(),
-            'answerForm' => $formAnswer->createView(),
             'userLogin' => $user
+        ]);
+    }
+    #[Route('/offers/{offer}/answer/{id}', name: 'app_answer_id', methods: ['GET', 'POST'])]
+    public function answerQuestion(QuestionRepository $questionRepository, Request $request, EntityManagerInterface $manager, int $id, int $offer){
+
+        $question = $questionRepository->findOneBy(['id' => $id]);
+
+        $formAnswer = $this->createForm(AnswerFormType::class);
+        $formAnswer->handleRequest($request);
+
+        if ($formAnswer->isSubmitted() && $formAnswer->isValid()) {
+            $answer = $formAnswer->getData();
+            $answer->setQuestion($question);
+            $answer->setUser($this->getUser());
+            $answer->setCreatedAt(new \DateTime());
+            $answer->setUpdatedAt(new \DateTime());
+            $manager->persist($answer);
+            $manager->flush();
+            return ($this->redirectToRoute('app_offers_id', ['id' => $offer]));
+        }
+
+        return $this->render('responses/form.html.twig', [
+            'question' => $question,
+            'answerForm' => $formAnswer->createView(),
         ]);
     }
 
