@@ -8,11 +8,11 @@
             {% for file in offer.files %}
                 {% if loop.index == 1 %}
                     <div class="carousel-item active" style="max-height: 400px;height:100%;">
-                      <img class="d-block w-100"src="{{asset(file.path)}}" alt="First slide">
+                      <img class="d-block w-100" <img class="card-img-top" src="{{asset(file.path)|default('https://images.unsplash.com/photo-1517142089942-ba376ce32a2e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80')}}" alt="First slide">
                     </div>
                 {% else %}
                     <div class="carousel-item" style="max-height: 400px;;height:100%;">
-                      <img class="d-block w-100"src="{{asset(file.path)}}" alt="other slide">
+                      <img class="d-block w-100" <img class="card-img-top" src="{{asset(file.path)|default('https://images.unsplash.com/photo-1517142089942-ba376ce32a2e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80')}}" alt="other slide">
                     </div>
                 {% endif %}
             {% endfor %}
