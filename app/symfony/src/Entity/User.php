@@ -16,8 +16,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
-{
+class User implements UserInterface, PasswordAuthenticatedUserInterface {
     use TimestampableTrait;
 
     #[ORM\Id]
@@ -43,8 +42,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
-    #[ORM\Column(type: 'string',length: 255)]
-    private string $googleId;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $googleId = null;
 
     #[ORM\Column(nullable: true)]
     private ?float $rate = null;
@@ -55,26 +54,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
 
+    #[ORM\Column(length: 255,nullable: true)]
+    private ?string $avatar = null;
+
+
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Offer::class, orphanRemoval: true)]
     private Collection $offers;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->offers = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getEmail(): ?string
-    {
+    public function getEmail(): ?string {
         return $this->email;
     }
 
-    public function setEmail(string $email): self
-    {
+    public function setEmail(string $email): self {
         $this->email = $email;
 
         return $this;
@@ -85,16 +84,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @see UserInterface
      */
-    public function getUserIdentifier(): string
-    {
-        return (string) $this->email;
+    public function getUserIdentifier(): string {
+        return (string)$this->email;
     }
 
     /**
      * @see UserInterface
      */
-    public function getRoles(): array
-    {
+    public function getRoles(): array {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
@@ -102,8 +99,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): self
-    {
+    public function setRoles(array $roles): self {
         $this->roles = $roles;
 
         return $this;
@@ -112,13 +108,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see PasswordAuthenticatedUserInterface
      */
-    public function getPassword(): ?string
-    {
+    public function getPassword(): ?string {
         return $this->password;
     }
 
-    public function setPassword(string $password): self
-    {
+    public function setPassword(string $password): self {
         $this->password = $password;
 
         return $this;
@@ -127,108 +121,101 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
-    {
+    public function eraseCredentials() {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
 
-    public function getFirstname(): ?string
-    {
+    public function getFirstname(): ?string {
         return $this->firstname;
     }
 
-    public function setFirstname(string $firstname): self
-    {
+    public function setFirstname(string $firstname): self {
         $this->firstname = $firstname;
 
         return $this;
     }
 
-    public function getLastname(): ?string
-    {
+    public function getLastname(): ?string {
         return $this->lastname;
     }
 
-    public function setLastname(string $lastname): self
-    {
+    public function setLastname(string $lastname): self {
         $this->lastname = $lastname;
 
         return $this;
     }
 
-    public function getRate(): ?float
-    {
+    public function getRate(): ?float {
         return $this->rate;
     }
 
-    public function setRate(?float $rate): self
-    {
+    public function setRate(?float $rate): self {
         $this->rate = $rate;
 
         return $this;
     }
 
-    public function upRate(): self
-    {
+    public function upRate(): self {
         $this->rate++;
         return $this;
     }
 
-    public function downRate(): self
-    {
+    public function downRate(): self {
         $this->rate--;
         return $this;
     }
 
-    public function getAddress(): ?string
-    {
+    public function getAddress(): ?string {
         return $this->address;
     }
 
-    public function setAddress(?string $address): self
-    {
+    public function setAddress(?string $address): self {
         $this->address = $address;
 
         return $this;
     }
 
-    public function getPseudo(): ?string
-    {
+    public function getPseudo(): ?string {
         return $this->pseudo;
     }
 
-    public function setPseudo(string $pseudo): self
-    {
+    public function setPseudo(string $pseudo): self {
         $this->pseudo = $pseudo;
 
         return $this;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getGoogleId(): string {
+    public function getGoogleId(): ?string {
         return $this->googleId;
     }
 
     /**
-     * @param string $googleId
+     * @param string|null $googleId
      */
-    public function setGoogleId(string $googleId): void {
+    public function setGoogleId(?string $googleId): void {
         $this->googleId = $googleId;
+    }
+
+    public function getAvatar(): ?string {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): void {
+        $this->avatar = $avatar;
     }
 
     /**
      * @return Collection<int, Offer>
      */
-    public function getOffers(): Collection
-    {
+    public function getOffers(): Collection {
         return $this->offers;
     }
 
-    public function addOffer(Offer $offer): self
-    {
+    public function addOffer(Offer $offer): self {
         if (!$this->offers->contains($offer)) {
             $this->offers->add($offer);
             $offer->setUser($this);
@@ -237,8 +224,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeOffer(Offer $offer): self
-    {
+    public function removeOffer(Offer $offer): self {
         if ($this->offers->removeElement($offer)) {
             // set the owning side to null (unless already changed)
             if ($offer->getUser() === $this) {

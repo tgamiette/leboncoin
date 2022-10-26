@@ -27,37 +27,32 @@ use Zenstruck\Foundry\Proxy;
  * @method static OfferRepository|RepositoryProxy repository()
  * @method Offer|Proxy create(array|callable $attributes = [])
  */
-final class OfferFactory extends ModelFactory
-{
-    public function __construct()
-    {
+final class OfferFactory extends ModelFactory {
+    public function __construct() {
         parent::__construct();
 
         // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
     }
 
-    protected function getDefaults(): array
-    {
+    protected function getDefaults(): array {
+
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'title' => self::faker()->text(15),
-            'price' => self::faker()->randomFloat(),
+            'price' => self::faker()->randomFloat(2,5),
             'description' => self::faker()->realTextBetween(200, 400),
             'status' => self::faker()->boolean(),
-            'user'=> UserFactory::random()
+            'user' => UserFactory::random()
         ];
     }
 
-    protected function initialize(): self
-    {
-        // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
-        return $this
-             ->afterInstantiate(function(Offer $offer): void {
-             });
+    protected function initialize(): self {
+        return $this;
+//            ->afterInstantiate(function (Offer $offer): void {
+//            });
     }
 
-    protected static function getClass(): string
-    {
+    protected static function getClass(): string {
         return Offer::class;
     }
 }

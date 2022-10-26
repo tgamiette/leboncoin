@@ -36,7 +36,7 @@ class Offer
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'offer', targetEntity: File::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'offer', targetEntity: File::class, cascade:[ 'PERSIST'], orphanRemoval: true)]
     private Collection $files;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, mappedBy: 'name')]

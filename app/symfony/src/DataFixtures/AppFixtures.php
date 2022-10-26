@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use App\Factory\FileFactory;
 use App\Factory\OfferFactory;
 use App\Factory\QuestionFactory;
 use App\Factory\ResponseFactory;
@@ -19,6 +20,7 @@ class AppFixtures extends Fixture {
     public function load(ObjectManager $manager): void {
         UserFactory::createMany(10);
         OfferFactory::createMany(50);
+        FileFactory::createMany(150);
         QuestionFactory::createMany(10);
     }
 }
