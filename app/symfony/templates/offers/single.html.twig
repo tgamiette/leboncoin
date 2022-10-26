@@ -7,11 +7,11 @@
           <div class="carousel-inner">
             {% for file in offer.files %}
                 {% if loop.index == 1 %}
-                    <div class="carousel-item active" style="max-height: 400px;">
+                    <div class="carousel-item active" style="max-height: 400px;height:100%;">
                       <img class="d-block w-100"src="{{asset(file.path)}}" alt="First slide">
                     </div>
                 {% else %}
-                    <div class="carousel-item" style="max-height: 400px;">
+                    <div class="carousel-item" style="max-height: 400px;;height:100%;">
                       <img class="d-block w-100"src="{{asset(file.path)}}" alt="other slide">
                     </div>
                 {% endif %}
@@ -42,15 +42,28 @@
 
     {% include 'questions/question.html.twig' %}
 
-    <div style="margin-bottom: 30px;">
-        {% if userLogin %}
-            {% if userLogin.id == offer.user.id %}
-                <h5>Supprimer votre annonce</h5>
-                <a href="{{ path('app_offer_delete_id', {id: offer.id}) }}">
-                    <button type="button" class="btn btn-primary">Supprimer</button>
-                </a>
+    <div style="display: flex; flex-direction: row;">
+        <div style="margin: 0 15px;">
+            {% if userLogin %}
+                {% if userLogin.id == offer.user.id %}
+                    <p>Supprimer mon annonce</p>
+                    <a href="{{ path('app_offer_delete_id', {id: offer.id}) }}">
+                        <button type="button" class="btn btn-warning">Supprimer</button>
+                    </a>
+                {% endif %}
             {% endif %}
-        {% endif %}
+        </div>
+
+        <div style="margin: 0 15px;">
+            {% if userLogin %}
+                {% if userLogin.id == offer.user.id %}
+                    <p>Modifier mon annonce</p>
+                    <a href="{{ path('app_offer_update_id', {id: offer.id}) }}">
+                        <button type="button" class="btn btn-warning">Modifier</button>
+                    </a>
+                {% endif %}
+            {% endif %}
+        </div>
     </div>
 
 {% endblock %}

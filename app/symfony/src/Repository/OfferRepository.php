@@ -38,6 +38,12 @@ class OfferRepository extends ServiceEntityRepository {
         }
     }
 
+    public function findAllPaginated(){
+        return $this->createQueryBuilder('o')
+            ->orderBy('o.createdAt', 'DESC')
+            ;
+    }
+
 
     private function getOfferQueryBuilder(): QueryBuilder {
         // Select the orders and their packages
@@ -66,38 +72,12 @@ class OfferRepository extends ServiceEntityRepository {
     public function searchQueryBuilder($title): QueryBuilder {
         $title = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title)));
 
-
-        dd($title);
-
         $query = $this->createQueryBuilder('o')
             ->andWhere('o.title like :title')
             ->setParameter('title', '%'.$title.'%')
             ->orderBy('o.title', 'ASC');
 
         return $query;
-    }
-
-    public function searchQueryBuilder2($title): QueryBuilder {
-//search offers by Tag
-
-//        $title = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title)));
-
-        $queryBuilder = $this->createQueryBuilder('o');
-
-        $queryBuilder
-            ->leftJoin('o.tags', 't')
-            ->addSelect('t')
-            ->andWhere("o.title LIKE :title OR :titlz IN t.name")
-            ->setParameter('title', '%' . $title . '%')
-            ->setParameter('titlz', $title)
-//            ->andWhere('t.name LIKE :title OR o.title like :title')
-////            ->setParameter('slug', '%' . $title . '%')
-//            ->setParameter('title', '%' . $title . '%')
-            ->orderBy('o.title', 'ASC');
-
-//        dd($queryBuilder->getQuery()->getDQL());
-        return $queryBuilder;
-
     }
 
 //    /**
