@@ -42,7 +42,7 @@ class GoogleAuthenticator extends AbstractAuthenticator {
         'developer_key' => 'AIzaSyCUizk6dVPuaUzpEU6qLtp7X5s0YpeRfQg'
     ];
 
-    public function __construct(private readonly SessionFactoryInterface $session, private EntityManagerInterface $em, private $projectDir, private readonly UrlGeneratorInterface $urlGenerator) {
+    public function __construct(private EntityManagerInterface $em, private $projectDir, private readonly UrlGeneratorInterface $urlGenerator) {
     }
 
     public function supports(Request $request): ?bool {
