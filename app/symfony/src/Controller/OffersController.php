@@ -61,6 +61,10 @@ class OffersController extends AbstractController {
         $formQuestions = $this->createForm(QuestionFormType::class);
         $formQuestions->handleRequest($request);
 
+        if(!$offer){
+            throw $this->createNotFoundException('No offer found for id ' . $id);
+        }
+
         if ($formQuestions->isSubmitted() && $formQuestions->isValid()) {
             $question = $formQuestions->getData();
             $question->setUser($this->getUser());

@@ -12,7 +12,7 @@
                         <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;border-radius:0;">
                             <div class="avatar avatar-xl">
                                 <img class="rounded-circle"
-                                     src="http://cdn.onlinewebfonts.com/svg/img_568656.png" style="width:60px"/>
+                                     src="{{user.avatar|default('http://cdn.onlinewebfonts.com/svg/img_568656.png')}}" style="width:60px"/>
                             </div>
                             <H6>{{ question.user.pseudo }}</H6>
                         </div>
@@ -43,7 +43,7 @@
                                 <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;border-radius:0;">
                                     <div class="avatar avatar-xl">
                                         <img class="rounded-circle"
-                                             src="http://cdn.onlinewebfonts.com/svg/img_568656.png" style="width:60px"/>
+                                             src="{{user.avatar|default('http://cdn.onlinewebfonts.com/svg/img_568656.png')}}" style="width:60px"/>
                                     </div>
                                     <H6>{{ response.user.email }}</H6>
                                     <button type="button" class="btn btn-dark">Vendeur</button>
