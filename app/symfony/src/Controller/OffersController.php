@@ -14,6 +14,7 @@ use App\Repository\QuestionRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -84,6 +85,7 @@ class OffersController extends AbstractController {
         ]);
     }
 
+    #[IsGranted('ROLE_USER')]
     #[Route('/{offer}/answer/{id}', name:'app_answer_id')]
     public function answer(QuestionRepository $questionRepository, Request $request, EntityManagerInterface $manager, int $id, int $offer): Response
     {
@@ -111,6 +113,7 @@ class OffersController extends AbstractController {
         ]);
     }
 
+    #[IsGranted('ROLE_USER')]
     #[Route('/create', name: 'app_offer_create')]
     public function create(Request $request, Security $security, EntityManagerInterface $entityManager,  FileUploader $fileUploader): Response
     {
@@ -150,6 +153,7 @@ class OffersController extends AbstractController {
         ]);
     }
 
+    #[IsGranted('ROLE_USER')]
     #[Route('/delete/{id}', name:'app_offer_delete_id')]
     public function delete(EntityManagerInterface $entityManager, int $id, OfferRepository $offerRepository): Response
     {
@@ -161,6 +165,7 @@ class OffersController extends AbstractController {
         return $this->redirectToRoute('app_home');
     }
 
+    #[IsGranted('ROLE_USER')]
     #[Route('update/{id}', name:'app_offer_update_id')]
     public function update(Offer $offer, EntityManagerInterface $entityManager, Request $request, FileUploader $fileUploader, Security $security): Response
     {
