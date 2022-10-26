@@ -47,28 +47,28 @@
 
     {% include 'questions/question.html.twig' %}
 
-    <div style="margin-bottom: 30px;">
-        {% if userLogin %}
-            {% if userLogin.id == offer.user.id %}
-                <h5>Supprimer votre annonce</h5>
-                <a href="{{ path('app_offer_delete_id', {id: offer.id}) }}">
-                    <button type="button" class="btn btn-primary">Supprimer</button>
-                </a>
+    <div style="display: flex; flex-direction: row;">
+        <div style="margin: 0 15px;">
+            {% if userLogin %}
+                {% if userLogin.id == offer.user.id %}
+                    <p>Supprimer mon annonce</p>
+                    <a href="{{ path('app_offer_delete_id', {id: offer.id}) }}">
+                        <button type="button" class="btn btn-warning">Supprimer</button>
+                    </a>
+                {% endif %}
             {% endif %}
-        {% endif %}
-    </div>
+        </div>
 
-
-
-    <div>
-        {% if userLogin %}
-            {% if userLogin.id == offer.user.id %}
-                <h5>Supprimer votre annonce</h5>
-                <a href="{{ path('app_offer_delete_id', {id: offer.id}) }}">
-                    <button type="button" class="btn btn-warning">Supprimer</button>
-                </a>
+        <div style="margin: 0 15px;">
+            {% if userLogin %}
+                {% if userLogin.id == offer.user.id %}
+                    <p>Modifier mon annonce</p>
+                    <a href="{{ path('app_offer_update_id', {id: offer.id}) }}">
+                        <button type="button" class="btn btn-warning">Modifier</button>
+                    </a>
+                {% endif %}
             {% endif %}
-        {% endif %}
+        </div>
     </div>
 
 {% endblock %}

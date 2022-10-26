@@ -150,7 +150,6 @@ class OffersController extends AbstractController {
         ]);
     }
 
-
     #[Route('/delete/{id}', name:'app_offer_delete_id')]
     public function delete(EntityManagerInterface $entityManager, int $id, OfferRepository $offerRepository): Response
     {
@@ -160,5 +159,42 @@ class OffersController extends AbstractController {
         $entityManager->flush();
 
         return $this->redirectToRoute('app_home');
+    }
+
+    #[Route('update/{id}', name:'app_offer_update_id')]
+    public function update(Offer $offer, EntityManagerInterface $entityManager, Request $request, FileUploader $fileUploader, Security $security): Response
+    {
+        $user = $security->getUser();
+
+        $form = $this->createForm(OfferType::class, $offer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            /** @var User $user */
+            $offer->setUser($user);
+            $offer->setStatus(false);
+            /** @var UploadedFile $imageFile */
+            $imageFiles = $form->get('files')->getData();
+
+            if($imageFiles) {
+
+                foreach ($imageFiles as $imageFile) {
+                    $file = new File();
+                    $imageFileName = $fileUploader->uploadFile($imageFile);
+                    $file->setFileName($imageFileName);
+                    $file->setPath('images/'.$imageFileName);
+                    $file->setOffer($offer);
+                    $entityManager->persist($file);
+                }
+            }
+
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_user_id', ['id' => $user->getId()]);
+        }
+
+        return $this->render('offer/createOffer.html.twig', [
+            'offerForm' => $form->createView(),
+        ]);
     }
 }
