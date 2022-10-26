@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="card"
+    style="margin: 20px 0;padding: 20px; border: none; border-bottom: 1px solid #00000020;border-radius: 0;">
+   <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;border-radius:0;">
+       <div class="avatar avatar-xl">
+           <img class="rounded-circle"
+                src="http://cdn.onlinewebfonts.com/svg/img_568656.png" style="width:60px"/>
+       </div>
+       <H6>{{ question.user.pseudo }}</H6>
+   </div>
+   <div class="card-body">
+       <h5 class="card-title">{{ question.comment }} ?</h5>
+   </div>
+
+
+   <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;">
+       <div>Publiée
+           le {{ question.createdAt|format_datetime('medium', 'none', locale='fr') }}</div>
+   </div>
+</div>
+
+<h6>
+Répondre à la question de {{question.user.pseudo}}
+</h6>
+
+<div class="">
+{{ form_start(answerForm) }}
+{{ form_widget(answerForm) }}
+<button type="submit" class="btn btn-warning">Poster</button>
+{{ form_end(answerForm) }}
+</div>
+
+{% endblock %}

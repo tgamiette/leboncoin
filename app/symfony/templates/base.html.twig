@@ -30,7 +30,7 @@
 
             <div class=" collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="ms-auto d-none d-lg-block">
-                    <form action="offers/search" class="d-flex">
+                    <form action="{{path('app_offers_search')}}" class="d-flex">
 
                         <div class="input-group">
                         <span class="border-warning input-group-text bg-warning text-white"><i
@@ -63,7 +63,7 @@
                             </ul>
                         </li>
 
-                        <a class="btn btn-warning" href="/create">Ajout annonce</a>
+                        <a class="btn btn-warning" href="{{ path('app_offer_create') }}">Ajout annonce</a>
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link mx-2" href="{{ path('app_login') }}">

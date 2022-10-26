@@ -27,8 +27,6 @@
           </a>
         </div>
 
-
-
         <div style="width: 100%;">
             <h3>{{ offer.title }}</h3>
             <p>{{ offer.description }}</p>
@@ -40,9 +38,6 @@
                     <a class="btn btn-primary" href="/user/{{ offer.user.id }}">Voir le vendeur</a>
             </div>
         </div>
-
-
-
     </div>
 
     {% include 'questions/question.html.twig' %}
@@ -57,7 +52,5 @@
             {% endif %}
         {% endif %}
     </div>
-
-
 
 {% endblock %}
