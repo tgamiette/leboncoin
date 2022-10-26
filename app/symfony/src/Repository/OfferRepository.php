@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Offer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
@@ -47,7 +48,6 @@ class OfferRepository extends ServiceEntityRepository {
     }
 
 
-
     public function getOfferPaginated(QueryBuilder $queryBuilder, $page = 1): Paginator {
         $limit = 20;
         $firstResult = (abs($page) - 1) * $limit;
@@ -63,9 +63,11 @@ class OfferRepository extends ServiceEntityRepository {
         return new Paginator($query, true);
     }
 
+    public function searchQueryBuilder($title): QueryBuilder {
+        $title = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title)));
 
-    public
-    function searchQueryBuilder($title): QueryBuilder {
+
+        dd($title);
 
         $query = $this->createQueryBuilder('o')
             ->andWhere('o.title like :title')
@@ -73,6 +75,29 @@ class OfferRepository extends ServiceEntityRepository {
             ->orderBy('o.title', 'ASC');
 
         return $query;
+    }
+
+    public function searchQueryBuilder2($title): QueryBuilder {
+//search offers by Tag
+
+//        $title = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title)));
+
+        $queryBuilder = $this->createQueryBuilder('o');
+
+        $queryBuilder
+            ->leftJoin('o.tags', 't')
+            ->addSelect('t')
+            ->andWhere("o.title LIKE :title OR :titlz IN t.name")
+            ->setParameter('title', '%' . $title . '%')
+            ->setParameter('titlz', $title)
+//            ->andWhere('t.name LIKE :title OR o.title like :title')
+////            ->setParameter('slug', '%' . $title . '%')
+//            ->setParameter('title', '%' . $title . '%')
+            ->orderBy('o.title', 'ASC');
+
+//        dd($queryBuilder->getQuery()->getDQL());
+        return $queryBuilder;
+
     }
 
 //    /**

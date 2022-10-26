@@ -24,12 +24,13 @@ use Symfony\Component\Security\Core\Security;
 #[Route('/offers')]
 class OffersController extends AbstractController {
 
-    #[Route('/search', name: 'app_offers_search', methods: ['GET', 'POST'])]
+    #[Route('/search', name: 'app_offers_search', methods: ['GET'])]
     public function searchOffer(Request $request, OfferRepository $offerRepository, PaginatorInterface $paginator): Response {
 
-        $search = $request->query->get('search');
         $title = $request->query->get('search');
         $offersQuery = $offerRepository->searchQueryBuilder($title);
+//        dd($offersQuery->getQuery()->getSQL());
+
         $pagination = $paginator->paginate($offersQuery, $request->query->getInt('page', 1), 10);
 
         return $this->render('offers/index.html.twig', [

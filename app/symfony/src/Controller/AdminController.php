@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Security\GoogleAuthenticator;
 use Google\Client;
+use Google\Service\Books;
 use Google\Service\Drive\Drive;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,10 +18,13 @@ class AdminController extends AbstractController
     {
 //        $client = new Client(GoogleAuthenticator::GOOGLE_CINFIG);
 //$client->fetchAccessTokenWithAuthCode();
-        $driveService = new Drive();
+//        $driveService = new Drive();
+//new Books();
+//new \Google\Service\Drive()        $driveService->getName();
+//        dd($driveService->getName());
 
-        $driveService->getName();
-        dd($driveService->getName());
+
+
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
         ]);
