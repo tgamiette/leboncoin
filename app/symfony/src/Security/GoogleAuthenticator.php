@@ -69,8 +69,9 @@ class GoogleAuthenticator extends AbstractAuthenticator {
                         $existingUser->setPseudo($userInfo->getName());
                         $this->em->persist($existingUser);
                     }
+
                     $existingUser->setGoogleId($userInfo->getId());
-//        $existingUser->setAvatar($userInfo->getPicture());
+                    $existingUser->setAvatar($userInfo->getPicture());
                     $this->em->flush($existingUser);
 
                     return $existingUser;
