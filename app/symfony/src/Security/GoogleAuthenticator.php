@@ -89,7 +89,7 @@ class GoogleAuthenticator extends AbstractAuthenticator {
         }
 
 
-        return new RedirectResponse($this->urlGenerator->generate('app_home'));
+        return new RedirectResponse($this->urlGenerator->generate('app_offers_all'));
 
     }
 
