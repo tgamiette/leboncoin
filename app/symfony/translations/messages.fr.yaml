@@ -1,6 +1,7 @@
 app:
     menu:
         account: Mon compte
+        producr: Mon compte
         search: Rechercher
         cart: Panier
         login: Se connecter
