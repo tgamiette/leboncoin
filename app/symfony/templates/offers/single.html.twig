@@ -16,6 +16,11 @@
                     </div>
                 {% endif %}
             {% endfor %}
+            {% if offer.status == 0 %}
+                <span class="badge text-bg-danger">Vendu</span>
+            {% else %}
+                <span class="badge text-bg-success">A vendre</span>
+            {% endif %}
           </div>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
