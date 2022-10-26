@@ -38,6 +38,12 @@ class OfferRepository extends ServiceEntityRepository {
         }
     }
 
+    public function findAllPaginated(){
+        return $this->createQueryBuilder('o')
+            ->orderBy('o.createdAt', 'DESC')
+            ;
+    }
+
 
     private function getOfferQueryBuilder(): QueryBuilder {
         // Select the orders and their packages
