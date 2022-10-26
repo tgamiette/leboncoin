@@ -29,19 +29,30 @@ class OffersController extends AbstractController {
 
         $title = $request->query->get('search');
         $offersQuery = $offerRepository->searchQueryBuilder($title);
-//        dd($offersQuery->getQuery()->getSQL());
-
-        $pagination = $paginator->paginate($offersQuery, $request->query->getInt('page', 1), 10);
+        $pagination = $paginator->paginate($offersQuery, $request->query->getInt('page', 1), 12);
 
         return $this->render('offers/index.html.twig', [
             'offers' => $pagination,
         ]);
     }
 
+    #[Route('/', name: 'app_offers_all')]
+    public function show(OfferRepository $offerRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $offers = $offerRepository->findAllPaginated();
+        $pagination = $paginator->paginate(
+            $offers,
+            $request->query->getInt('page', 1),
+            12
+        );
 
+        return $this->render('offers/index.html.twig', [
+            'offers' => $pagination,
+        ]);
+    }
 
     #[Route('/{id}', name: 'app_offer_id', requirements: ['id' => '\d+'])]
-    public function single(int $id,QuestionRepository $questionRepository, ResponseRepository $responseRepository, Request $request, EntityManagerInterface $manager, OfferRepository $offerRepository): Response
+    public function single(int $id, Request $request, EntityManagerInterface $manager, OfferRepository $offerRepository): Response
     {
         $offer = $offerRepository->findOneBy(['id' => $id]);
         $user = $this->getUser();
