@@ -48,7 +48,7 @@
         <div class="card" style="width: 18rem">
             {% for file in offer.files %}
                 {% if file and loop.index == 1 %}
-                    <img class="card-img-top" src="{{asset(file.path)}}" alt="Card image cap">
+                    <img class="card-img-top" src="{{asset(file.path)}}" style="min-height: 200px;" alt="Card image cap">
                 {% endif %}
             {% endfor %}
             <div class="card-body">
