@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 use App\Form\UserFormType;
-
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,11 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class UserController extends AbstractController
-{
+class UserController extends AbstractController {
     #[Route('/user/{id}', name: 'app_user_id', methods: ['GET', 'POST'])]
-    public function index(UserRepository $userRepository, Request $request, EntityManagerInterface $manager, int $id): Response
-    {
+    public function index(UserRepository $userRepository, Request $request, EntityManagerInterface $manager, int $id): Response {
 
         $user = $userRepository->findOneBy(['id' => $id]);
 
@@ -24,9 +21,10 @@ class UserController extends AbstractController
         if ($formRate->isSubmitted() && $formRate->isValid()) {
             $rate = $formRate['rate']->getData();
 
-            if($rate === true){
+            if ($rate === true) {
                 $user->upRate();
-            }elseif ($rate === false){
+            }
+            elseif ($rate === false) {
                 $user->downRate();
             }
 
