@@ -18,6 +18,10 @@ class UserController extends AbstractController {
         $formRate = $this->createForm(UserFormType::class);
         $formRate->handleRequest($request);
 
+        if(!$user){
+            throw $this->createNotFoundException('No user found for id ' . $id);
+        }
+
         if ($formRate->isSubmitted() && $formRate->isValid()) {
             $rate = $formRate['rate']->getData();
 
