@@ -78,7 +78,7 @@ class GoogleAuthenticator extends AbstractAuthenticator {
             ),
         );
 
-        $this->session->set('google_token',$token);
+//        $this->session->set('google_token',$token);
         return $passport;
     }
 
@@ -97,13 +97,13 @@ class GoogleAuthenticator extends AbstractAuthenticator {
 
         return new Response($message, Response::HTTP_FORBIDDEN);
     }
-
-    public function createToken(Passport $passport, string $firewallName): TokenInterface {
-
-        $token = new PostAuthenticationToken($passport->getUser(), $firewallName, $passport->getUser()->getRoles());
-        $token->setAttribute('token_google',$this->session->get('google_token'));
-        return $token;
-    }
+//
+//    public function createToken(Passport $passport, string $firewallName): TokenInterface {
+//
+//        $token = new PostAuthenticationToken($passport->getUser(), $firewallName, $passport->getUser()->getRoles());
+//        $token->setAttribute('token_google',$this->session->get('google_token'));
+//        return $token;
+//    }
 
 
 //    public function start(Request $request, AuthenticationException $authException = null): Response
