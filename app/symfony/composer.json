@@ -38,7 +38,12 @@
         "symfony/yaml": "6.1.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/intl-extra": "^3.4",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "fakerphp/faker": "^1.20",
+        "symfony/debug-bundle": "6.1.*",
+        "symfony/stopwatch": "6.1.*",
+        "symfony/web-profiler-bundle": "6.1.*",
+        "zenstruck/foundry": "^1.22"
     },
     "config": {
         "allow-plugins": {
@@ -93,10 +98,5 @@
         }
     },
     "require-dev": {
-        "fakerphp/faker": "^1.20",
-        "symfony/debug-bundle": "6.1.*",
-        "symfony/stopwatch": "6.1.*",
-        "symfony/web-profiler-bundle": "6.1.*",
-        "zenstruck/foundry": "^1.22"
     }
 }

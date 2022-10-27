@@ -29,41 +29,35 @@ use function Zenstruck\Foundry\faker;
  * @method static UserRepository|RepositoryProxy repository()
  * @method User|Proxy create(array|callable $attributes = [])
  */
-final class UserFactory extends ModelFactory
-{
+final class UserFactory extends ModelFactory {
     private UserPasswordHasherInterface $hasher;
 
-    public function __construct(UserPasswordHasherInterface $hasher)
-    {
+    public function __construct(UserPasswordHasherInterface $hasher) {
         parent::__construct();
 
         // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
         $this->hasher = $hasher;
     }
 
-    protected function getDefaults(): array
-    {
+    protected function getDefaults(): array {
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'email' => self::faker()->email(),
             'firstname' => faker()->firstName,
             'lastname' => faker()->lastName,
-            'pseudo' => faker()->lastName,
-            'roles' => [],
         ];
     }
 
-    protected function initialize(): self
-    {
+    protected function initialize(): self {
         // see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
-        return $this->afterInstantiate(function(User $user): void {
-            $user->setPassword($this->hasher->hashPassword($user, "password"));
-        })
-        ;
+        return $this->afterInstantiate(function (User $user): void {
+
+            $user->setPassword($this->hasher->hashPassword($user, "password"))
+                ->setPseudo($user->getFirstname() . " " . $user->getLastname())
+                ->setEmail($user->getFirstname() . "." . $user->getLastname() . "@gmail.com");
+        });
     }
 
-    protected static function getClass(): string
-    {
+    protected static function getClass(): string {
         return User::class;
     }
 }

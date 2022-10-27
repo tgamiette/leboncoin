@@ -12,10 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
 class UserController extends AbstractController {
-    #[Route('/user/{id}', name: 'app_user_id', methods: ['GET', 'POST'])]
+    #[Route('/user/{id}', name: 'app_user_id', methods: ['GET'])]
     public function index(UserRepository $userRepository, Request $request, EntityManagerInterface $manager, int $id, Security $security): Response {
 
-        $loggedUser = $security->getUser();
         $user = $userRepository->findOneBy(['id' => $id]);
         $formRate = $this->createForm(UserFormType::class);
         $formRate->handleRequest($request);
@@ -40,7 +39,6 @@ class UserController extends AbstractController {
 
         return $this->render('user/single.html.twig', [
             'user' => $user,
-            'loggedUser' => $loggedUser,
             'rateForm' => $formRate->createView(),
         ]);
     }

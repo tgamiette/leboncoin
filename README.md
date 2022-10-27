@@ -1,11 +1,13 @@
 # Teddy
-# Php-fpm-alpine & Nginx
+# Php-fpm-alpine & Nginx ( Leboncoin)
 ### Symfony
 #### Avec MariaDB & MailDev & Adminer & PMA
 
-**Pensez à modifier le nom de votre bdd dans le fichier .env destiné à docker**
+PMA -> user: root / pass: azerty
 
 Pour lancer le projet (si vous souhaiter partir d'un projet vide supprimer le dossier symfony dans app)
+
+**Vous pouvez vous connecter avec Google mais sinon il faudra prendre une user dans la bdd le mdp sera "password"**
 
 ````shell
 make install
@@ -21,8 +23,10 @@ Start container
 ````shell
 make up
 ````
-
-
+Stop container 
+````shell
+make stop
+````
 # J-F
 # Php-fpm-alpine x Nginx
 ### Symfony | Docker

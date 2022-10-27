@@ -44,7 +44,7 @@
 
         </div>
 
-        {% if loggedUser != user %}
+        {% if app.user != user and app.user %}
             <div class="">
                 {{ form_start(rateForm) }}
                 {{ form_widget(rateForm) }}
