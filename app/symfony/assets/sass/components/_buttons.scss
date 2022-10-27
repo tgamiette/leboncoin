@@ -107,6 +107,10 @@
   &[disabled], &.disabled { color: $white;}
 }
 
+.btn-warning {
+  color: white;
+}
+
 .btn-success {
   color: $white;
   &:focus, &:hover, &:active:focus { background-color: transparent; color: $success;}

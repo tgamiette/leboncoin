@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create offer{% endblock %}
+
+{% block body %}
+    <style>
+        .containerCreate {width: 100%;}
+        .card {width: 600px; margin: 50px auto; padding: 20px; border-radius: 10px}
+        .create {margin: -20px; text-align: center; background-color: #FE6E13; border-radius: 10px 10px 0 0; }
+        .form {margin-top: 30px; color: #FE6E13; font-size: 20px}
+        .submit {text-align: center; margin-top: 20px; color: white}
+    </style>
+
+    <div class="containerCreate">
+        <div class="card">
+            <div class="create">
+                <h1 style="color: white">Create offer</h1>
+            </div>
+            <div class="form">
+                {{ form_start(offerForm) }}
+                {{ form_row(offerForm.title,{'attr': {'class': 'form-control'}}) }}
+                {{ form_row(offerForm.description,{'attr': {'class': 'form-control'}}) }}
+                {{ form_row(offerForm.price,{'attr': {'class': 'form-control'}}) }}
+                {{ form_label(offerForm.files) }}
+                <div class="test">
+                    {{ form_widget(offerForm.files) }}
+                </div>
+
+            </div>
+            <div class="submit">
+                <button type="submit" class="btn btn-warning" style="color: white;">Register</button>
+            </div>
+            {{ form_end(offerForm) }}
+        </div>
+    </div>
+
+{% endblock %}
