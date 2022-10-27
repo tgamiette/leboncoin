@@ -4,6 +4,7 @@ namespace App\Factory;
 
 use App\Entity\Offer;
 use App\Repository\OfferRepository;
+use App\Service\Slugify;
 use Zenstruck\Foundry\RepositoryProxy;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
@@ -28,7 +29,7 @@ use Zenstruck\Foundry\Proxy;
  * @method Offer|Proxy create(array|callable $attributes = [])
  */
 final class OfferFactory extends ModelFactory {
-    public function __construct() {
+    public function __construct(private Slugify $slugger) {
         parent::__construct();
 
         // TODO inject services if required (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services)
@@ -47,9 +48,11 @@ final class OfferFactory extends ModelFactory {
     }
 
     protected function initialize(): self {
-        return $this;
-//            ->afterInstantiate(function (Offer $offer): void {
-//            });
+        return $this
+            ->afterInstantiate(function (Offer $offer): void {
+                $offer->setSlug($this->slugger->slugify($offer->getTitle()));
+            });
+
     }
 
     protected static function getClass(): string {
