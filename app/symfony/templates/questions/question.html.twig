@@ -30,12 +30,8 @@
                                     <a href="/offers/{{ offer.id }}/answer/{{ question.id }}">Répondre</a>
                                 {% endif %}
                             {% endif %}
-
                         </div>
-
-
                     </div>
-
 
                     {% for response in question.responses %}
                         <div class="card"
@@ -53,12 +49,10 @@
                                 <p class="card-title">{{ response.answer }}</p>
                             </div>
 
-
                             <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;">
                                 <div>Publiée
                                     le {{ response.createdAt|format_datetime('medium', 'none', locale='fr') }}</div>
                             </div>
-
 
                         </div>
                     {% endfor %}
