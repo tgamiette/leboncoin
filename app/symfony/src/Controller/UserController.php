@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Form\UserFormType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,7 +19,7 @@ class UserController extends AbstractController {
         $formRate = $this->createForm(UserFormType::class);
         $formRate->handleRequest($request);
 
-        if(!$user){
+        if (!$user) {
             throw $this->createNotFoundException('No user found for id ' . $id);
         }
 

@@ -12,7 +12,8 @@
                         <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;border-radius:0;">
                             <div class="avatar avatar-xl">
                                 <img class="rounded-circle"
-                                     src="{{user.avatar|default('http://cdn.onlinewebfonts.com/svg/img_568656.png')}}" style="width:60px"/>
+                                     src="{{ question.user.avatar|default('http://cdn.onlinewebfonts.com/svg/img_568656.png') }}"
+                                     style="width:60px"/>
                             </div>
                             <H6>{{ question.user.pseudo }}</H6>
                         </div>
@@ -20,13 +21,12 @@
                             <h5 class="card-title">{{ question.comment }} ?</h5>
                         </div>
 
-
                         <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;">
                             <div>Publiée
                                 le {{ question.createdAt|format_datetime('medium', 'none', locale='fr') }}</div>
                             {% if userLogin %}
                                 {% if userLogin.id == offer.user.id %}
-                                    <a href="/offers/{{offer.id}}/answer/{{question.id}}">Répondre</a>
+                                    <a href="/offers/{{ offer.id }}/answer/{{ question.id }}">Répondre</a>
                                 {% endif %}
                             {% endif %}
 
@@ -38,28 +38,29 @@
 
 
                     {% for response in question.responses %}
-                            <div class="card"
-                                 style="padding: 20px; border: none; border-bottom: 1px solid #00000020;border-radius: 0; margin: 0 0 0 40px;">
-                                <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;border-radius:0;">
-                                    <div class="avatar avatar-xl">
-                                        <img class="rounded-circle"
-                                             src="{{user.avatar|default('http://cdn.onlinewebfonts.com/svg/img_568656.png')}}" style="width:60px"/>
-                                    </div>
-                                    <H6>{{ response.user.email }}</H6>
-                                    <button type="button" class="btn btn-dark">Vendeur</button>
+                        <div class="card"
+                             style="padding: 20px; border: none; border-bottom: 1px solid #00000020;border-radius: 0; margin: 0 0 0 40px;">
+                            <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;border-radius:0;">
+                                <div class="avatar avatar-xl">
+                                    <img class="rounded-circle"
+                                         src="{{ user.avatar|default('http://cdn.onlinewebfonts.com/svg/img_568656.png') }}"
+                                         style="width:60px"/>
                                 </div>
-                                <div class="card-body">
-                                    <p class="card-title">{{ response.answer }}</p>
-                                </div>
-
-
-                                <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;">
-                                    <div>Publiée
-                                        le {{ response.createdAt|format_datetime('medium', 'none', locale='fr') }}</div>
-                                </div>
-
-
+                                <H6>{{ response.user.email }}</H6>
+                                <button type="button" class="btn btn-dark">Vendeur</button>
                             </div>
+                            <div class="card-body">
+                                <p class="card-title">{{ response.answer }}</p>
+                            </div>
+
+
+                            <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;">
+                                <div>Publiée
+                                    le {{ response.createdAt|format_datetime('medium', 'none', locale='fr') }}</div>
+                            </div>
+
+
+                        </div>
                     {% endfor %}
                 {% endfor %}
             </div>

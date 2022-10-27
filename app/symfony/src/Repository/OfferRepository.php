@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Offer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
@@ -38,10 +37,9 @@ class OfferRepository extends ServiceEntityRepository {
         }
     }
 
-    public function findAllPaginated(){
+    public function findAllPaginated() {
         return $this->createQueryBuilder('o')
-            ->orderBy('o.createdAt', 'DESC')
-            ;
+            ->orderBy('o.createdAt', 'DESC');
     }
 
 
@@ -74,7 +72,7 @@ class OfferRepository extends ServiceEntityRepository {
 
         $query = $this->createQueryBuilder('o')
             ->andWhere('o.title like :title')
-            ->setParameter('title', '%'.$title.'%')
+            ->setParameter('title', '%' . $title . '%')
             ->orderBy('o.title', 'ASC');
 
         return $query;
