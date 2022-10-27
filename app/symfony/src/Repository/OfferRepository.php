@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Offer;
+use App\Service\Slugify;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -17,7 +18,12 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Offer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class OfferRepository extends ServiceEntityRepository {
-    public function __construct(ManagerRegistry $registry) {
+    public function __construct
+    (
+        ManagerRegistry $registry,
+        private Slugify $slugger
+    )
+    {
         parent::__construct($registry, Offer::class);
     }
 
@@ -68,10 +74,10 @@ class OfferRepository extends ServiceEntityRepository {
     }
 
     public function searchQueryBuilder($title): QueryBuilder {
-        $title = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title)));
+        $title = $this->slugger->slugify($title);
 
         $query = $this->createQueryBuilder('o')
-            ->andWhere('o.title like :title')
+            ->andWhere('o.slug like :title')
             ->setParameter('title', '%' . $title . '%')
             ->orderBy('o.title', 'ASC');
 

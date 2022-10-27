@@ -27,10 +27,11 @@
                      style="width:130px"/>
             </div>
             <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
-                <H6>{{ user.pseudo }}</H6>
-                <H6>Nom : {{ user.firstname }} {{ user.lastname }}</H6>
+                <H3>{{ user.pseudo }}</H3>
+                <H6>Nom : {{ user.lastname }}</H6>
+                <H6>Prénom : {{ user.firstname }}</H6>
                 <H6>Email : {{ user.email }} </H6>
-                <H6>Address : {{ user.address }} </H6>
+                <H6>Addresse : {{ user.address }} </H6>
 
                 <div class="">
                     <H6>Note :</H6>
@@ -43,15 +44,16 @@
 
         </div>
 
-        {% if user.id != app.user.id %}
+        {% if loggedUser != user %}
             <div class="">
                 {{ form_start(rateForm) }}
                 {{ form_widget(rateForm) }}
                 <button type="submit" class="btn btn-warning" name="button">Ajouter un pouce</button>
                 {{ form_end(rateForm) }}
             </div>
+        {% else %}
+            <div></div>
         {% endif %}
-
     </div>
 
     <div class="card"
