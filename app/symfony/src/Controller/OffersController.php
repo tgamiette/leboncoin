@@ -145,10 +145,10 @@ class OffersController extends AbstractController {
             $entityManager->persist($offer);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_offers_all');
         }
 
-        return $this->render('offer/createOffer.html.twig', [
+        return $this->render('offers/createOffer.html.twig', [
             'offerForm' => $form->createView(),
         ]);
     }
