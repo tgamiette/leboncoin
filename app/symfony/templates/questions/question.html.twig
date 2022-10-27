@@ -22,14 +22,14 @@
                         </div>
 
                         <div style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; gap: 20px;">
-                            <div>Publiée
-                                le {{ question.createdAt|format_datetime('medium', 'none', locale='fr') }}</div>
+                            <div>
+                                Publiée le {{ question.createdAt|format_datetime('medium', 'none', locale='fr') }}
+                            </div>
                             {% if userLogin %}
                                 {% if userLogin.id == offer.user.id %}
                                     <a href="/offers/{{ offer.id }}/answer/{{ question.id }}">Répondre</a>
                                 {% endif %}
                             {% endif %}
-
 
                         </div>
 
