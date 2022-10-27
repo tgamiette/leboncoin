@@ -45,6 +45,9 @@ class Offer
     #[ORM\OneToMany(mappedBy: 'offer', targetEntity: Question::class, orphanRemoval: true)]
     private Collection $questions;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->files = new ArrayCollection();
@@ -200,6 +203,18 @@ class Offer
                 $question->setOffer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

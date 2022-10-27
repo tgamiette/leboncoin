@@ -2,7 +2,7 @@
     <h2>Les questions utiles</h2>
     <div style="display: flex; flex-direction: row;align-items: flex-start; justify-content: space-between; gap: 60px; margin: 30px 0;">
         {% if offer.questions is empty %}
-            <p>Aucune question n'a été posé pour cet annonce</p>
+            <p>Aucune question n'a été posée pour cette annonce</p>
         {% else %}
             <div style="width: 60%;">
                 {% for question in offer.questions %}
@@ -61,11 +61,11 @@
         {% endif %}
 
         <div style="width: 30%;">
-            <h3>Posez une question ?</h3>
+            <h3>Une question ?</h3>
             {% if is_granted('ROLE_USER') %}
                 {% include 'questions/form.html.twig' %}
             {% else %}
-                <a href="/login" class="btn btn-warning">Veuillez-vous connecter pour ajouter une question</a>
+                <a href="/login" class="btn btn-warning">Veuillez vous connecter pour ajouter une question</a>
             {% endif %}
         </div>
     </div>

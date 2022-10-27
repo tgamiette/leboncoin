@@ -9,9 +9,9 @@ use App\Form\OfferType;
 use App\Form\QuestionFormType;
 use App\Repository\OfferRepository;
 use App\Form\AnswerFormType;
-use App\Repository\ResponseRepository;
 use App\Repository\QuestionRepository;
 use App\Service\FileUploader;
+use \App\Service\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -22,7 +22,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
-
 #[Route('/offers')]
 class OffersController extends AbstractController {
 
@@ -32,9 +31,11 @@ class OffersController extends AbstractController {
         $title = $request->query->get('search');
         $offersQuery = $offerRepository->searchQueryBuilder($title);
         $pagination = $paginator->paginate($offersQuery, $request->query->getInt('page', 1), 12);
+        $paginationItems = $pagination->getTotalItemCount();
 
         return $this->render('offers/index.html.twig', [
             'offers' => $pagination,
+            'items' => $paginationItems,
         ]);
     }
 
@@ -47,9 +48,11 @@ class OffersController extends AbstractController {
             $request->query->getInt('page', 1),
             12
         );
+        $paginationItems = $pagination->getTotalItemCount();
 
         return $this->render('offers/index.html.twig', [
             'offers' => $pagination,
+            'items' => $paginationItems,
         ]);
     }
 
@@ -115,7 +118,7 @@ class OffersController extends AbstractController {
 
     #[IsGranted('ROLE_USER')]
     #[Route('/create', name: 'app_offer_create')]
-    public function create(Request $request, Security $security, EntityManagerInterface $entityManager,  FileUploader $fileUploader): Response
+    public function create(Request $request, Security $security, EntityManagerInterface $entityManager,  FileUploader $fileUploader, Slugify $slugger): Response
     {
         $offer = new Offer();
         $user = $security->getUser();
@@ -124,6 +127,8 @@ class OffersController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
+            $sluggedTitle = $slugger->slugify($form->get('title')->getData());
+            $offer->setSlug($sluggedTitle);
             /** @var User $user */
             $offer->setUser($user);
             $offer->setStatus(false);
